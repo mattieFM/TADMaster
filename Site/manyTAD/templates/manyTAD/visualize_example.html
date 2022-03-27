@@ -1,0 +1,11 @@
+
+{% block content %}
+{% load plotly_dash %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+<div class="{% plotly_class name="ExampleVIS_Fast" template_type="div-direct"%}">
+	{% plotly_app name='ExampleVIS_Fast' ratio=1.0 initial_arguments=dash_context %}
+
+</div>
+{% endblock content %}

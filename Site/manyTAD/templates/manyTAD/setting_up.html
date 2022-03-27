@@ -1,0 +1,54 @@
+{% extends 'manyTAD/base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+  <div class="container">
+    <form method="post">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Setting Up</h1>        
+      </div>
+    </div>
+  </form>
+  </div>
+  <!-- <p>this second style could use the jquery at the bottom. the design is also good for just html</p> -->
+        <div class="sideA">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="card m-b-20">
+                        <div class="card-body" style="background: #eee;border: solid 1px #ddd;border-radius: 3px;">
+                            <div style="background: #fff;padding: 10px;border-radius: 5px;">
+                                <i class="fa fa-spinner fa-spin" style="font-size:48px"></i>    
+                                <i>
+                                    Setting up Visualization. This should only take a few seconds.
+                                </i>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="sideB" style="display: none;" data-form="more_view" data-form-url="{{form_url}}">
+            <div class="row">
+            </div> 
+        </div>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+{{context}}
+<script>
+  var pk = {{ pk }}
+function redirect(){
+    window.location.href = "/TADMaster/visualize/"+pk;
+    } 
+setTimeout(redirect, 2000);
+
+</script>
+{% endblock content %}

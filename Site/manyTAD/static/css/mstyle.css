@@ -1,0 +1,153 @@
+
+@font-face {
+  font-family: popins;
+  src: url("./popins/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: popins-black;
+  src: url("./popins/Poppins-Black.ttf");
+}
+
+@font-face {
+  font-family: popins-regular;
+  src: url("./popins/Poppins-Regular.ttf ");
+}
+
+@font-face {
+  font-family: inter-bold;
+  src: url("./inter/Inter-Bold-slnt=0.ttf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: inter;
+  src: url("./inter/Inter-Light-slnt=0.ttf");
+}
+@font-face {
+  font-family: inter-medium;
+  src: url("./inter/Inter-Medium-slnt=0.ttf");
+}
+
+.inter {
+    font-family: inter;
+}
+.inter_bold {
+    font-family: inter-bold;
+}
+.inter_medium {
+    font-family: inter-medium;
+}
+
+
+.popins {
+    font-family: popins;
+}
+.popins_black{
+    font-family: popins-black;
+}
+.popins_reg {
+    font-family: popins-regular;  
+}
+
+
+body {
+    font-size: 15px;
+    background-color: #fff;
+    margin: 0;
+  
+    font-family: 'popins' !important;
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.overflow-y{
+    overflow-y: scroll;
+}
+
+#scroll-to-top:hover {
+    background-color: #4777f4;
+    color: #fff;
+    opacity: .8;
+}
+
+#scroll-to-top {
+    background-color: #4777f4;
+    display: none;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 50%;
+    line-height: 45px;
+    color: #fff;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 999;
+}
+
+.header-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.fw-100 {
+    font-weight: 100 !important;
+}
+
+.fs-28 {
+    font-size: 28px !important;
+}
+
+.mb-16 {
+    margin-bottom: 16px !important;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.spread-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header_text{
+    text-align: center;
+}
+
+.bar-chart{
+    padding: 10px; 
+    border:solid 1px #eeeeee; 
+    border-radius:5px; 
+    background: #eee;          
+}
+
+.mb_25{
+    margin-bottom: 25px;
+}
+
+.header {
+    text-align: center;
+    color: #202327;
+    font-size: 30px;
+}
+
+.pd_30{
+    padding: 30px
+}
+
+.not-visible {
+    display: none;
+}

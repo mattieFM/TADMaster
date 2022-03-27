@@ -1,0 +1,125 @@
+{% extends 'manyTAD/base.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+  <div class="container" style="margin-top: 100px;">
+
+	<h2 class="mb-5 header_text" style="text-align: center; font-size: 35px;">
+            <b style="color: #708090;" class="popins"> TADMaster: A Comprehensive Web-based Tool For Analysis of Topologically Associated Domains </b>
+        </h2>
+
+
+
+        <div class="col-md-12" style="margin-bottom: 25px">
+           
+	<div class="text-center">
+		<img src="{% static "/image/testing.jpg" %}" style="height: 420px; width: 650px;" class="rounded" alt="..."> 
+	</div>
+
+
+          
+	<p>
+	The groundbreaking work by Dixon et al., 2012 revealed the existence of regions with more within-interaction or self-interacting regions called Topologically Associated Domains. Topological associated domains, or TADs, are regions where interactions occur much more frequently than with outside regions (Figure Above). 
+	We provide the following tools for analysis:
+	<hr>
+        </p>
+	<h3>TADMaster</h3>
+	<p>
+	Using detected TAD bed files perform  one or more of the comprehensive analysis and visualization listed below:
+	
+	<li> Dynamic heatmaps of chromosomes compared across algorithms and normalizations
+	<li> Measure of Concordance of domains and boundaries between algorithms and normalizations
+    <li> Graphs showing number of TADs and size distribution per algorithm, and shared boundaries between algorithms
+    <li> Biological analysis on humans by comparison to reference data, and other species (user provides reference data)
+
+   </p>
+	<br>
+	<div style="text-align: center; margin-bottom: 25px">
+		<a href="upload_existing" type="" class="enviaPedido btn btn-primary btn-sm" style="padding: 15px 40px !important;">
+    			<span class="visible-xs-block">TADMaster</span>
+  		</a>	 
+	</div>
+	
+
+
+	<hr>
+	<h3>TADMaster Plus: TADMaster + Hi-C Matrix Normalization + State-of-the-Art TAD Detection Tools</h3>
+	<p>
+	 TADMaster Plus is a full suite that combines the comparative analysis and visualization functions of TADMaster with 
+	 <li> Existing algorithms for Normalization 
+	 <li> State-of-the-Art TAD Detection Tools
+
+   </p>
+        
+        
+		<div style="text-align: center; margin-bottom: 25px">
+	        
+
+		<a href="upload" type="" class="enviaPedido btn btn-primary btn-sm" style="padding: 15px 35px !important;">
+    			<span class="visible-xs-block">TADMaster Plus</span>
+  		</a>
+
+
+	</div>
+	
+	
+	
+	<hr>
+	<h3>Reupload Previous Jobs</h3>
+	<p>
+	If you want to reupload a previous submitted job that was removed from our servers, then you can upload your zipped job folder here. Please note that if any
+	changes were made to the job files the upload will be unsucessful. 
+        </p>
+	<div style="text-align: center; margin-bottom: 25px">
+
+		<a href="upload_previous_job" type="" class="enviaPedido btn btn-primary btn-sm" style="padding: 15px 40px !important;">
+    			<span class="visible-xs-block">Reupload</span>
+  		</a>
+	</div>
+
+		<hr>
+          <div>
+            <h2 class="inter"> Cite: </h2>
+            <p> <br> </p>
+          </div>
+          <div>
+            <h2 class="inter"> Contacts </h2>
+            <p>If you have any question or contribution, Kindly contact. <a href="mailto:ooluwada@uccs.edu">Prof. Oluwatosin Oluwadare</a></p>
+          </div>
+        </div>
+
+
+    </div>
+
+	
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="../static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script>
+
+$(document).ready(function(){
+
+	$(".footer").css("top", "8%");
+
+	$(window).on('load resize', function() {
+        	if ($(window).width() >= 767 && $(window).width() < 1199) {
+            		$('.title').css('font-size', '12px');
+        	}
+       		else{
+            		$('.title').css('font-size', '24px');
+        	} 
+    	});
+
+
+});
+
+
+
+</body>
+
+{% endblock content %}

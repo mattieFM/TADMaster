@@ -1,0 +1,181 @@
+{% extends 'manyTAD/base.html' %}
+{% load static %}
+{% block content %}
+<body>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="container" style="margin-top: 100px; min-height: 100%;">
+
+        	<h2 class="mb-5 header_text popins" style="text-align: center;">
+        		<b style="color: #708090;"> Preprocessing and Normalization </b>
+        	</h2>
+
+			<div class="row" style="margin-top: 5%">
+        		<div class="col-md-4 offset-md-4" >
+        			<button type="submit" class="btn btn-info btn-block popins"> Data is Normalized <br> Skip Normalization </button>
+        		</div>
+        	</div>
+
+
+        	<div class="text-center" style="margin: 50px; padding: 30px">
+        		<h1 class="inter_medium">OR</h1>
+        	</div>
+
+
+
+
+			<div class="container">
+        		<div class="col-md-8 offset-md-2">
+
+        			<div class="row mb_25">
+            				<div class="col-md-4">
+                				<a  data-toggle="popover" data-trigger="hover" data-content="Knight-Ruiz Matrix Balancing">
+                      					<div class="alert alert-danger">
+ 					        		<div class="custom-control custom-checkbox">
+					            			<input type="checkbox" class="custom-control-input" id="norm_kr" name="norm_kr">
+					            			<label class="custom-control-label" for="norm_kr">
+					                			<h2 class="header_text"> 
+							        			<div class="title inter_bold"> KR </div>
+							        		</h2>
+					            			</label>
+					        		</div>
+ 				    			</div>
+                				</a>
+               				</div>
+
+
+                			<div class="col-md-4">
+                				<a  data-toggle="popover" data-trigger="hover" data-content="Vanilla Coverage">
+                      					<div class="alert alert-warning">
+ 					        		<div class="custom-control custom-checkbox">
+					            			<input type="checkbox" class="custom-control-input" id="norm_vc" name="norm_vc">
+					            			<label class="custom-control-label" for="norm_vc">
+					                			<h2 class="header_text"> 
+							        			<div class="title inter_bold"> VC </div>
+							        		</h2>
+					            			</label>
+					        		</div>
+ 				    			</div>
+                				</a>
+                			</div>
+
+                			<div class="col-md-4">
+                				<a  data-toggle="popover" data-trigger="hover" data-content="Iterative correction and eigenvector decomposition">
+	                    				<div class="alert alert-warning">
+ 					        		<div class="custom-control custom-checkbox">
+					            			<input type="checkbox" class="custom-control-input" id="norm_ice" name="norm_ice">
+					            			<label class="custom-control-label" for="norm_ice">
+					                			<h2 class="header_text"> 
+							        			<div class="title inter_bold"> ICE </div>
+							        		</h2>
+					            			</label>
+					        		</div>
+ 				    			</div>
+				    		</a>
+                			</div>
+					<div class="col-md-4">
+					</div>
+
+            			</div>
+
+
+            			<div class="row">
+
+                			<div class="col-md-4">
+                				<a  data-toggle="popover" data-trigger="hover" data-content="Median Contact Frequency Scaling">
+                      					<div class="alert alert-danger">
+ 					        		<div class="custom-control custom-checkbox">
+					            			<input type="checkbox" class="custom-control-input" id="norm_mcfs" name="norm_mcfs">
+					            			<label class="custom-control-label" for="norm_mcfs">
+					                			<h2 class="header_text"> 
+							        			<div class="title inter_bold"> MCFS </div>
+							        		</h2>
+					            			</label>
+					        		</div>
+ 				    			</div>
+                				</a>
+                			</div>
+					<div class="col-md-4">
+					</div>
+
+                			<div class="col-md-4">
+                				<a  data-toggle="popover" data-trigger="hover" data-content="Sequential Component Normalization">
+                      					<div class="alert alert-danger">
+					        		<div class="custom-control custom-checkbox">
+					            			<input type="checkbox" class="custom-control-input" id="norm_scn" name="norm_scn">
+					            			<label class="custom-control-label" for="norm_scn">
+					                			<h2 class="header_text"> 
+							        			<div class="title inter_bold"> SCN </div>
+							        		</h2>
+					            			</label>
+					        		</div>
+ 				    			</div>
+                				</a>
+                			</div>
+            			</div>
+			</div>
+        	
+        	<div class='row'>
+        		<div class='col-md-12 mt-4 mb-4'>
+        			
+        		<a class="btn btn-secondary btn-lg" style="float: left;" onclick="history.back()">
+        			<h4 style="color: #fff;" class="popins_reg">BACK&nbsp;&nbsp;<i class="fas fa-hand-point-left"></i></h4>
+        		</a>
+        		<button type="submit" class="btn btn-secondary btn-lg" style="float: right;">
+        			<h4 style="color: #fff;" class="popins_reg">NEXT&nbsp;&nbsp;<i class="fas fa-hand-point-right"></i></h4>
+        		</button>
+        		</div>
+        	</div>
+
+        	<div class="row">
+        		<div class="col-md-8 offset-md-2 mt-4">
+        			<p>
+        				Need Help deciding on the Algorithm to choose for your data? Read the Publication(s) below to determine algorithm(s) to utilize
+        			</p>
+        			<ul>
+        				<li>Lyu, H., Liu, E., & Wu, Z. (2020). Comparison of normalization methods for Hi-C data. BioTechniques, 68(2), 56-64</li>
+        			</ul>
+        		</div>
+        	</div>
+
+        </div>
+
+	</div>
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="../static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+
+	<script>
+
+ 
+
+$(document).ready(function(){
+
+	$('[data-toggle="popover"]').each(
+	    function(index, element) {
+	        $(this).popover({placement:'auto'});  
+	    }
+	);
+	 
+
+	$(window).on('load resize', function() {
+        if ($(window).width() >= 767 && $(window).width() < 1199) {
+            $('.title').css('font-size', '12px');
+        }
+        else{
+            $('.title').css('font-size', '24px');
+        } 
+    	});
+
+	$(".footer").css("top", "22%");
+	
+
+});
+</script>
+
+	</form>
+</body>
+
+{% endblock content %}

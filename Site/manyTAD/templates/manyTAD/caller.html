@@ -1,0 +1,450 @@
+{% extends 'manyTAD/base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+	<div class="container" style="margin-top: 100px; min-height: 100%">
+
+        <h2 class="mb-5 header_text popins" style="text-align: center;">
+            <b style="color: #708090;">  TAD Methods </b>
+        </h2>
+
+        <div style="margin-bottom: 25px;">
+
+            <div class="row mb_25">
+                <div class="col-md-3">
+                	<a data-toggle="popover" data-trigger="hover" data-content="TADs are acquired through dynamic programming identification of domains. These domains are across multiple resolutions, then derive to a consensus set of domains that span all resolutions." data-toggle="modal" data-target="#myModal">
+                      	<div class="alert alert-secondary">
+                			<span onclick="openModal(Armatus)"><i class="fas fa-edit"></i></span>
+					        <div class="custom-control custom-checkbox">
+					            <input type="checkbox" class="custom-control-input" id="armatus" name="armatus">
+					            <label class="custom-control-label" for="armatus">
+					                <h2 class="header_text"> 
+							        	<div class="title inter_bold"> Armatus </div>
+							        </h2>
+					            </label>
+					        </div>
+ 				    	</div>
+				    </a>
+                </div>
+
+
+                <div class="col-md-3">
+                	<a data-toggle="popover" data-trigger="hover" data-content="Using dynamic programming, the likelihood of a position being the corner of a domain is calculated. The peak values in the matrix are analyzed, with corresponding peaks being labelled as a domain." data-toggle="modal" data-target="arrowhead">
+                      	<div class="alert alert-secondary">
+                			<span onclick="openModal(Arrowhead)"><i class="fas fa-edit"></i>
+								
+                			</span>
+					        <div class="custom-control custom-checkbox">
+					            <input type="checkbox" class="custom-control-input" id="arrowhead" name="arrowhead">
+					            <label class="custom-control-label" for="arrowhead" style="right: 5px;">
+					                <h2 class="header_text"> 
+							        	<div class="title inter_bold"> Arrowhead </div>
+							        </h2>
+					            </label>
+					        </div>
+ 				    	</div>
+                	</a>
+                </div>
+
+                <div class="col-md-3">
+                	<a data-toggle="popover" data-trigger="hover" data-content="CaTCH stratifies a contact matrix into a series of smaller contact matrices by setting the insulation thresholds, or difference between interaction frequency thresholds. As the threshold amount decreases, borders between contacts regions decrease and thus a hierarchal structure of differentially insulated domains is created.">
+	                    <div class="alert alert-secondary">
+                			<span><i class="fas fa-edit" style="color:#e2e3e5"></i>	                    	
+					        <div class="custom-control custom-checkbox">
+					            <input type="checkbox" class="custom-control-input" id="catch" name="catch">
+					            <label class="custom-control-label" for="catch">
+					                <h2 class="header_text"> 
+							        	<div class="title inter_bold"> CaTCH </div>
+							        </h2>
+					            </label>
+					        </div>
+ 				    	</div>
+				    </a>
+                </div>
+
+                <div class="col-md-3">
+                	<a data-toggle="popover" data-trigger="hover" data-content="After the interaction frequency matrix is normalized, a Gaussian mixture model is applied to the matrix to identify intra and inter chromatin domains. Choosing a bin size, the algorithm performs a proportion test between the inter-domain contact count and intra-domain contact count. Block boundaries are established to identify tads.">
+                      	<div class="alert alert-success">
+                      		<span><i class="fas fa-edit"  style="color:#00c292"></i>
+					        <div class="custom-control custom-checkbox">
+					            <input type="checkbox" class="custom-control-input" id="gmap" name="gmap">
+					            <label class="custom-control-label" for="gmap">
+					                <h2 class="header_text"> 
+							        	<div class="title inter_bold"> GMAP </div>
+							        </h2>
+					            </label>
+					        </div>
+ 				    	</div>
+                	</a>
+                </div>
+            </div>
+
+
+            <div class="row mb_25">
+                <div class="col-md-3">
+            	<a data-toggle="popover" data-trigger="hover" data-content="A novel sliding window-based spectral clustering framework that uses gaps between consecutive eigenvectors for TAD boundary identification">
+                  	<div class="alert alert-success">
+                  		<span><i class="fas fa-edit" style="color:#00c292"></i>
+				        <div class="custom-control custom-checkbox">
+				            <input type="checkbox" class="custom-control-input" id="spectralTAD" name="spectralTAD">
+				            <label class="custom-control-label" for="spectralTAD">
+				                <h2 class="header_text"> 
+						        	<div class="title inter_bold"> SpectralTAD </div>
+						        </h2>
+				            </label>
+				        </div>
+				    	</div>
+            	</a>
+            	</div>
+
+                <div class="col-md-3">
+                	<a data-toggle="popover" data-trigger="hover" data-content="After normalizing the contact matrix, features for clustering are created from the length of the row and columns, however only one half of the matrix is considered due to it being symmetrical. Then a hierarchal cluster analysis is performed where TADs are derived from contact clusters.">
+                      	<div class="alert alert-danger">
+                      		<span><i class="fas fa-edit"  style="color:#ef5350"></i>
+					        <div class="custom-control custom-checkbox">
+					            <input type="checkbox" class="custom-control-input" id="clustertad" name="clustertad">
+					            <label class="custom-control-label" for="clustertad">
+					                <h2 class="header_text"> 
+							        	<div class="title inter_bold"> ClusterTAD </div>
+							        </h2>
+					            </label>
+					        </div>
+ 				    	</div>
+                	</a>
+                </div>
+
+                <div class="col-md-3">
+                	<a data-toggle="popover" data-trigger="hover" data-content="Calculates the dirationality index as proposed by Dixon et al. 2012. The boundaries are then detriminded by the approach proposed by TAD Tool, where the TADs are found by a specified cutoff.">
+                      	<div class="alert alert-success">
+                			<span><i class="fas fa-edit" style="color:#00c292"></i></span>
+					        <div class="custom-control custom-checkbox">
+					            <input type="checkbox" class="custom-control-input" id="di" name="di">
+					            <label class="custom-control-label" for="di">
+					                <h2 class="header_text"> 
+							        	<div class="title inter_bold"> DI </div>
+							        </h2>
+					            </label>
+					        </div>
+ 				    	</div>
+                	</a>
+                </div>
+
+                <div class="col-md-3">
+                	<a data-toggle="popover" data-trigger="hover" data-content="Using high resolution contact matrices, HiCExplorer highlights and identifies important boundaries in contact matrices that can be used to identify TADs using machine learning." data-toggle="modal" data-target="hic_explorer">
+                      	<div class="alert alert-warning">
+                      		<span><i class="fas fa-edit" style="color:#ffc36d"></i>
+					        <div class="custom-control custom-checkbox">
+					            <input type="checkbox" class="custom-control-input" id="hic_explorer" name="hic_explorer">
+					            <label class="custom-control-label" for="hic_explorer" style="right: 10px;">
+					                <h2 class="header_text"> 
+							        	<div class="title inter_bold"> HiCExplorer</div>
+							        </h2>
+					            </label>
+					        </div>
+ 				    	</div>
+                	</a>
+                </div>
+            </div>
+ 
+
+            <div class="row mb_25">
+            	<div class="col-md-3">
+            	<a data-toggle="popover" data-trigger="hover" data-content="Using a hierarchal clustering method, it analysis contact matrices for the locations of groups of interaction frequencies which are close together and share the same pattern.">
+                  	<div class="alert alert-info">
+						<span><i class="fas fa-edit" style="color:#03a9f3"></i>
+				        <div class="custom-control custom-checkbox">
+				            <input type="checkbox" class="custom-control-input" id="ic_finder" name="ic_finder">
+				            <label class="custom-control-label" for="ic_finder">
+				                <h2 class="header_text"> 
+						        	<div class="title inter_bold"> ICFinder </div>
+						        </h2>
+				            </label>
+				        </div>
+				    	</div>
+            	</a>
+            	</div>
+
+            	<div class="col-md-3">
+            	<a data-toggle="popover" data-trigger="hover" data-content="An approach of assigning an insulation score to genomic intervals along the chromosome. The score reflects the aggregate of interactions occurring across each interval.">
+                  	<div class="alert alert-info">
+				<span><i class="fas fa-edit" style="color:#03a9f3"></i></span>
+				        <div class="custom-control custom-checkbox">
+				            <input type="checkbox" class="custom-control-input" id="insulation" name="insulation">
+				            <label class="custom-control-label" for="insulation">
+				                <h2 class="header_text"> 
+						        	<div class="title inter_bold"> INS. Score </div>
+						        </h2>
+				            </label>
+				        </div>
+				    	</div>
+            	</a>
+            	</div>
+
+                <div class="col-md-3">
+            	<a data-toggle="popover" data-trigger="hover" data-content="A value is calculated based upon the average contact frequency, upstream and downstream, creating a curve that runs the length of the chromosome. It finds TAD boundaries from local minimums and filters false positives by using statistical analysis.">
+                  	<div class="alert alert-danger">
+            			<span onclick="openModal(TopDom)"><i class="fas fa-edit"></i></span>
+				        <div class="custom-control custom-checkbox">
+				            <input type="checkbox" class="custom-control-input" id="topdom" name="topdom">
+				            <label class="custom-control-label" for="topdom">
+				                <h2 class="header_text"> 
+						        	<div class="title inter_bold"> TopDom </div>
+						        </h2>
+				            </label>
+				        </div>
+				    	</div>
+            	</a>
+            	</div>
+
+        
+                <div class="col-md-3">
+            	<a data-toggle="popover" data-trigger="hover" data-content="Through segmentation of a Hi-C contact map, the matrix is divided into smaller domains where associated interaction frequencies are grouped.">
+                  	<div class="alert alert-info">
+                  		<span><i class="fas fa-edit" style="color:#03a9f3"></i>
+				        <div class="custom-control custom-checkbox">
+				            <input type="checkbox" class="custom-control-input" id="hic_seg" name="hic_seg">
+				            <label class="custom-control-label" for="hic_seg">
+				                <h2 class="header_text"> 
+						        	<div class="title inter_bold"> HiCseg </div>
+						        </h2>
+				            </label>
+				        </div>
+				    	</div>
+            	</a>
+            	</div>
+             
+            </div>
+
+
+			<div class="row mb_25">
+				<div class="col-md-3">
+				</div>
+            </div>
+
+        </div>
+
+        <div class="row">
+        	<div class='col-md-12 mt-4 mb-4'>
+        	<a class="btn btn-secondary btn-lg" style="float: left;" onclick="history.back()">
+        		<h4 style="color: #fff;">BACK&nbsp;&nbsp;<i class="fas fa-hand-point-left"></i></h4>
+        	</a>
+        	<button type="submit" class="btn btn-secondary btn-lg" style="float: right;">
+        		<h4 style="color: #fff;">NEXT&nbsp;&nbsp;<i class="fas fa-hand-point-right"></i></h4>
+        	</button>
+        	</div>
+        </div>
+
+        <div class="row">
+        		<div class="col-md-8 offset-md-2 mt-4">
+        			<p>
+        				Need Help deciding on the Algorithm to choose for your data? Read the Publication(s) below to determine algorithm(s) to utilize :
+        			</p>
+        			<ul>
+        				<li>Zufferey, M., Tavernari, D., Oricchio, E., & Ciriello, G. (2018). Comparison of computational methods for the identification of topologically associating domains. Genome biology, 19(1), 1-18.</li>
+        				<li>methods for the identification of topologically associating domains. Genome biology, 19(1), 1-18. Liu, K., Li, H., Li, Y., Wang, J., & Wang, J. (2022). A comparison of topologically associating domain callers based on Hi-C data. IEEE/ACM Transactions on Computational Biology and Bioinformatics.</li>
+        			</ul>
+        		</div>
+        	</div>
+
+    </div>
+
+
+
+<div class="modal fade" id="Armatus" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<div>Edit</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          	<span aria-hidden="true">&times;</span>
+		        </button>
+             </div>
+            <div class="modal-body">                
+			  	<div class="form-group">
+				   	<label for="exampleInputName">Gamma</label>
+				    <input type="text" class="form-control" id="armatus_gamma" name="armatus_gamma" value="0.2">
+				</div>				
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Arrowhead" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<div>Edit</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          	<span aria-hidden="true">&times;</span>
+		        </button>
+             </div>
+            <div class="modal-body">                
+			  	<div class="form-group">
+				   	<label for="exampleInputName">Genome ID</label>
+				    <input type="text" class="form-control" id="arrowhead_genomeID" name="arrowhead_genomeID" value="hg19">
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="DI" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<div>Edit</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          	<span aria-hidden="true">&times;</span>
+		        </button>
+             </div>
+            <div class="modal-body">  
+			  	<div class="form-group">
+				   	<label for="exampleInputName">DI Length</label>
+				    <input type="text" class="form-control" id="di_length" name="di_length" value="10">
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<div>Edit</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          	<span aria-hidden="true">&times;</span>
+		        </button>
+             </div>
+            <div class="modal-body">
+			  	<div class="form-group">
+				   	<label for="exampleInputName">TopDom Window</label>
+				    <input type="text" class="form-control" id="topdom_window" name="topdom_window" value="5">
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Insulation" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+            	<div>Edit</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          	<span aria-hidden="true">&times;</span>
+		        </button>
+             </div>
+            <div class="modal-body">                
+			  	<div class="form-group">
+				   	<label for="exampleInputName">Insulation Window (base pairs)</label>
+				    <input type="text" class="form-control" id="insulation_window" name="insulation_window" value="3000">
+				</div>				
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+function openModal(e) {
+    var mymodal = $(e);
+    // mymodal.find('.modal-body').text(e.title);
+    mymodal.modal('show');
+}
+
+var input = '{{ input_type }}';
+var error = '{{ error }}';
+var norms = {{ normalizations|safe }};
+$(document).ready(function(){
+
+	if (input == 'h5' || input == 'cool' || input == 'sparse' || input == 'square') { 
+		$('#disable_arrowhead').removeAttr('onclick'); 
+		$("[data-target='arrowhead']").on("click", function() {
+			$("#arrowhead").attr("disabled", true); 
+			alert('Arrowhead is only compatiable with .hic files.');
+		})
+	} else if (norms.includes('ICE') || norms.includes('SCN') || norms.includes('MCFS')){
+		$('#disable_arrowhead').removeAttr('onclick'); 
+		$("[data-target='arrowhead']").on("click", function() {
+			$("#arrowhead").attr("disabled", true); 
+			alert('Arrowhead is only compatiable KR and VC normalizations.');
+		})
+
+	}
+        $('input[name=catch]').click(function(){
+		if (document.getElementById('catch').checked) {                
+            		var areYouSure = confirm('This method can significantly increase processing time depending on the number of normalizations selected and size of the input matrix. Do you wish to proceed?');
+            		if (areYouSure) {
+                		$(this).prop('checked', this.checked);
+            		} else {
+                		$(this).prop('checked', !this.checked);
+            	}
+		}
+        });
+
+        $('input[name=clustertad]').click(function(){
+		if (document.getElementById('clustertad').checked) {                
+            		var areYouSure = confirm('This method can significantly increase processing time depending on the number of normalizations selected and size of the input matrix. Do you wish to proceed?');
+            		if (areYouSure) {
+                		$(this).prop('checked', this.checked);
+            		} else {
+                		$(this).prop('checked', !this.checked);
+            	}
+		}
+        });
+
+	if (input == 'sparse' || input == 'square') {
+		$('#disable_hicexplorer').removeAttr('onclick'); 
+		$("[data-target='hic_explorer']").on("click", function() {
+			$("#hic_explorer").attr("disabled", true); 
+			alert('HiC Explorer is not compatable with sparse or NxN input data types.');
+		})
+	} else if (norms.includes('VC') || norms.includes('SCN') || norms.includes('MCFS')){
+		$('#disable_hic_explorer').removeAttr('onclick'); 
+		$("[data-target='hic_explorer']").on("click", function() {
+			$("#hic_explorer").attr("disabled", true); 
+			alert('HiC Explorer is only compatiable KR and ICE normalizations.');
+		})
+
+	}
+
+	
+	if( error == "insufficient parameters") {
+    		window.alert(" Please select atleast two methods.");
+	}
+
+
+	$('[data-toggle="popover"]').each(
+	    function(index, element) {
+	        $(this).popover({placement:'auto'});  
+	    }
+	);
+
+	$(window).on('load resize', function() {
+        if ($(window).width() >= 767 && $(window).width() < 1199) {
+            $('.title').css('font-size', '12px');
+        }
+        else{
+            $('.title').css('font-size', '24px');
+        } 
+    	});
+
+
+	
+
+});
+</script>
+
+
+</form>
+</body>
+{% endblock content %}

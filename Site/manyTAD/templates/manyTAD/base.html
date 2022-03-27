@@ -1,0 +1,214 @@
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145830606-3"></script>
+	<script>
+ 	 window.dataLayer = window.dataLayer || [];
+ 	 function gtag(){dataLayer.push(arguments);}
+ 	 gtag('js', new Date());
+
+ 	 gtag('config', 'UA-145830606-3');
+	</script>
+	
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+ 
+	<title>TADMaster</title> 
+    <link rel="icon" type="image/x-icon" href="{% static "/image/favicon.ico" %}">
+    <link rel="stylesheet" href="{% static "/bootstrapv4/css/bootstrap-grid.min.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "/bootstrapv4/css/bootstrap.min.css" %}" type="text/css">
+
+    <link rel="stylesheet" href="{% static "/css/style.css" %}" type="text/css">
+    <link rel="stylesheet" href="{% static "/css/master_style.css" %}" type="text/css">
+    
+    <link rel="stylesheet" href="{% static "/css/mstyle.css" %}" type="text/css">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+<div class="container-fluid">
+
+    <div class="topbar" style="margin-right: 25px; position: inherit;">           
+          <nav class="navbar-custom"> 
+
+              <ul class="list-inline mb-0"> 
+
+
+                <div class="float-left">
+                  <li class="list-inline-item app-search">
+                          <a href="/TADMaster/" class="logo" style="margin-left: 70px;">
+                        <img src="{% static "/image/nlogo.svg" %}" alt="logo" style="height: 90px; width: 120px;">
+                    </a>
+                    </li>
+                </div>
+
+                
+
+                <div class="float-left">
+                  <li class="list-inline-item app-search">
+                          <h2 class="page-title header_text" style="padding-left: 0px;">
+                      <b class="header popins_black"> TADMaster </b>
+                  </h2>
+                    </li>
+                </div>
+                  
+                  <div class="float-right">
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user example" data-toggle="dropdown" href="http://biomlearn.uccs.edu/TADMaster/examples" role="button" aria-haspopup="false" aria-expanded="false" title="Example" style="display: contents;font-family: 'popins' !important;color: black;">
+                            <img src="{% static "/image/example.png" %}" alt="user" class="rounded-circle">
+                           Example &nbsp;
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user documentation" data-toggle="dropdown" href="https://github.com/OluwadareLab/TADMaster/wiki" role="button" aria-haspopup="false" aria-expanded="false" title="Help and Tutorial" target="_blank" style="display: contents;font-family: 'popins' !important;color: black;">
+                            <img src="{% static "/image/doc1.png" %}" alt="user" class="rounded-circle"> 
+                           Help &nbsp;
+                        </a>
+                    </li>
+
+                    <li class="list-inline-item dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user github" data-toggle="dropdown" href="https://github.com/OluwadareLab/TADMaster" role="button" aria-haspopup="false" aria-expanded="false" title="Github" style="display: contents;font-family: 'popins' !important;color: black;">
+                            <img src="{% static "/image/git.png" %}" alt="user" class="rounded-circle"> 
+                           Github &nbsp;
+                        </a>
+                    </li>
+                  </div>
+                 
+              </ul>
+
+            </nav>            
+      </div> 
+
+
+	<div id="cookieNotice" class="light display-right" style="display: none;">
+    		<div id="closeIcon" style="display: none;">
+    		</div>
+    		<div id="cookieNotice" class="d-flex align-items-center align-self-center card p-3 text-center cookies">
+			<img src="https://i.imgur.com/Tl8ZBUe.png" width="50">
+			<span class="mt-2">This website uses cookies or similar technologies, to enhance your browsing experience. By continuing to use our website, you acknowledge that information, such as IP, may be recorded. 
+			
+			</span>
+		
+	    		<button class="btn btn-dark mt-3 px-4" onclick="acceptCookieConsent();">Continue</button> 
+		</div>
+    	</div>
+ 
+  
+  </div>
+
+
+  <!-- Page Content -->
+  {% block content %} {% endblock %}
+
+     <!-- Footer -->
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
+
+<footer class="row footer">
+    <div style="float: left">
+<img src="{% static "/image/UCCS_Logo.png" %}" alt="user" class="rounded" style="width: 17%">
+</div>
+    
+    <div style="float: right">
+<span class="" style="margin-top: 5px; font-size: 14px"> &copy 2021 Oluwadare Lab</span>
+</div>
+    
+	  
+	</footer>
+
+
+
+	<script src="../static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+
+	<script>
+
+ 
+
+$(document).ready(function(){
+	
+	$(".example").on('click', function() {
+		var url = $(this).attr('href');
+		window.open(url, '_self');
+    	});
+
+	 
+	$(".documentation").on('click', function() {
+		var url = $(this).attr('href');
+		window.open(url, '_blank');
+    	});
+
+	$(".github").on('click', function() {
+		var url = $(this).attr('href');
+		window.open(url, '_blank');
+    	});
+	
+
+});
+
+// Create cookie
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+// Delete cookie
+function deleteCookie(cname) {
+    const d = new Date();
+    d.setTime(d.getTime() + (24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=;" + expires + ";path=/";
+}
+
+// Read cookie
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+// Set cookie consent
+function acceptCookieConsent(){
+    deleteCookie('user_cookie_consent');
+    setCookie('user_cookie_consent', 1, 30);
+    document.getElementById("cookieNotice").style.display = "none";
+}
+
+let cookie_consent = getCookie("user_cookie_consent");
+if(cookie_consent != ""){
+    document.getElementById("cookieNotice").style.display = "none";
+}else{
+    document.getElementById("cookieNotice").style.display = "block";
+}
+</script>
+
+
+</body>
+
+</html>

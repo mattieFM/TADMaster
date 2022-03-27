@@ -1,0 +1,49 @@
+{% extends 'manyTAD/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load static %}
+<body style="font-size: 17px;">
+		
+	<div class="container" style="margin-top: 100px">
+        <div class="row mb_25">
+        	<div class="col-md-6 offset-md-3">
+
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Example Bed File</button>
+
+	<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+  		<div class="modal-dialog">
+    	<div class="modal-content">
+        			<div class="modal-body">
+            				<img src="{% static "/image/analysis_example_bed.png" %}" class="img-responsive">
+        			</div>
+    			</div>
+		</div>
+	</div>
+			
+			<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
+				{{ form|crispy }}
+			</div>
+		</div>
+	</div>
+
+			<div id="progress-box" class="not-visible">progress</div>
+			<div id="cancel-box" class="not-visible" style="margin-bottom: 10px;">
+				<button id="cancel-btn" class="btn btn-danger">cancel</button>
+			</div>  
+		</div>
+		<div style="margin-bottom: 100px"></div>
+		<div>
+		<a href="{%url 'upload_existing' %}" class="btn btn-secondary btn-lg" style="float: left;">
+			<h4 style="color: #fff;">BACK&nbsp;&nbsp;<i class="fas fa-hand-point-left"></i></h4>
+		</a>
+		<button type="submit" class="btn btn-success btn-lg" style="float: right; color: #008000;">
+			<h4 style="color: #fff;">Submit&nbsp;&nbsp;<i class="fas fa-hand-point-right"></i></h4>
+		</button>
+		</div>
+
+	</form>
+</body>
+
+{% endblock content %}

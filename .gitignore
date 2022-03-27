@@ -1,0 +1,7 @@
+.Rhistory
+*.sqlite3
+node_modules/
+redis-6.0.8/
+*-schedule
+*-workspace
+
