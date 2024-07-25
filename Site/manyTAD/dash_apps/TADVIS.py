@@ -56,12 +56,12 @@ app.layout = html.Div([
         [
     		html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()), style={'height':'75%', 'width':'75%'}),
 
-        ], style={"width": "150px", "text-align": "center", 'display': 'inline-block'}),
+        ], style={"width": "150px","height": "150px",   "text-align": "center", 'display': 'inline-block'}),
 	], href="/TADMaster/", target="_top"),
         html.Div(
         [
  		html.H2("TADMaster"),
-        ], style={"width": "150px", "text-align": "center", 'display': 'inline-block'}),
+        ], style={"width": "150px","height": "150px",   "text-align": "center", 'display': 'inline-block'}),
 
         ], style={"text-align": "center", "margin-bottom": "25px"}),
 	
@@ -902,7 +902,7 @@ def available_normalizations_options(id):
     data = Data.objects.get(pk=id)
     job_id = str(data.job_id)
     available_normalizations = []
-    path = '/storage/store/TADMaster/data/job_'+ job_id+'/output/'
+    path = '/var/www/html/TADMaster/Site/storage/data/job_'+ job_id+'/output/'
     for directory in os.listdir(path):
         available_normalizations.append(os.path.join(path, directory))
     available_options=[{'label': i[78:], 'value': i} for i in available_normalizations]
@@ -1097,7 +1097,7 @@ def set_display_heat_map(norm_path, heat_map_options, heat_map_colorscale, id, s
                                   [1.0, "rgb(255,255,0)"]]
     else:
         heat_map_color = heat_map_colorscale
-    heat_matrix_path='/storage/store/TADMaster/data/job_'+ job_id+'/normalizations'
+    heat_matrix_path='/var/www/html/TADMaster/Site/storage/data/job_'+ job_id+'/normalizations'
     for topdir, dirs, files in os.walk(heat_matrix_path):
         firstfile = sorted(files)[0]
         displayed_matrix = os.path.join(topdir, firstfile)
@@ -1355,7 +1355,7 @@ def set_display_stacked_boundary_map(norm_path, id, stacked_boundary_option):
             itt += 1
         stack = np.asarray(stack)
         stacked_boundary_plot = go.Figure(data=[
-            go.Bar(name='Unique', x=names, y=stack[:,0])])
+            go.Bar(name='Unique',color_discret_map=colors, x=names, y=stack[:,0])])
         for i in range(1, len(stack)):
             title = str(i) + " methods"
             stacked_boundary_plot.add_bar(name=title, x=names, y=stack[:,i])
@@ -1493,6 +1493,7 @@ def set_MoC_Comparison(norm_path, id, MoC_option):
         MoC_Comparison_plot.add_bar(x=names, y=MoC[row_select])
         MoC_Comparison_plot.update_layout(template='simple_white')
         MoC_Comparison_plot.update_yaxes(title_text="Measure of Concordance")
+        
     else:
         MoC_Comparison_plot = px.bar()
     return MoC_Comparison_plot

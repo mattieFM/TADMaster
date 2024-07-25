@@ -15,7 +15,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+STORAGE_DIR = f"%s/storage/" % BASE_DIR.__str__()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -33,8 +33,20 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'US/Mountain'
+CELERY_APP="djangoproject"
+CELERYD_CHDIR="/var/www/html/TADMaster/Site"
+CELERYD_OPTS="--time-limit=300 --concurrency=1"
+CELERYD_LOG_FILE="/var/www/html/TADMaster/Site/CeleryLogs/%n%I.log"
+CELERYD_PID_FILE="/var/www/html/TADMaster/Site/CeleryLogs/%n.pid"
 
-ALLOWED_HOSTS = ["biomlearn.uccs.edu"]
+CELERYD_LOG_LEVEL="INFO"
+CELERY_CREATE_DIRS=1
+
+#add task time limit IF we want global timeouts rather than per task that can be done here
+#CELERY_TASK_TIME_LIMIT = 300
+#CELERY_TASK_SOFT_TIME_LIMIT = 10
+
+ALLOWED_HOSTS = ["biomlearn.uccs.edu", 'localhost', '127.0.0.1', "128.198.214.151"]
 
 
 # Application definition
@@ -53,6 +65,7 @@ INSTALLED_APPS = [
     'channels',
     'channels_redis',
     'crispy_forms',
+    'crispy_bootstrap4',
     'bootstrap4',
 
 ]
@@ -100,7 +113,7 @@ WSGI_APPLICATION = 'djangoproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': f'%s/db.sqlite3' % STORAGE_DIR,
     }
 }
 
@@ -175,10 +188,31 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'TADMaster.Oluwadare.Lab@gmail.com'
-EMAIL_HOST_PASSWORD = 'StrongPassword1!'
+EMAIL_HOST_PASSWORD = 'obtorfjtymrbzdsv'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'\
 
 STATIC_ROOT = BASE_DIR / 'manyTAD/static'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "/var/www/html/TADMaster/debug.log",
+        },
+    },
+    "loggers": {
+        '': {
+            "handlers": ["file"],
+            "level": "WARNING",
+            "propagate": True,
+        },
+    },
+}
+

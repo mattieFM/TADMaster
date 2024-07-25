@@ -49,7 +49,7 @@ input.addEventListener('change', ()=>{
                         } else{
                             xhr.abort()
                             alertBox.innerHTML = `<div class="alert alert-danger" role="alert">
-                                                   Square or sparse matrix files must be under 250MB in size.
+                                                   Square or sparse matrix files must be under 250MB in size. Please use the docker version provided on TADMaster GitHub page to run locally.
                                                   </div>`
                             setTimeout(()=>{
                             uploadForm.reset()

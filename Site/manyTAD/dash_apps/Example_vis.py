@@ -56,12 +56,12 @@ app.layout = html.Div([
         [
     		html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()), style={'height':'75%', 'width':'75%'}),
 
-        ], style={"width": "150px", "text-align": "center", 'display': 'inline-block'}),
+        ], style={"width": "150px","height": "150px",   "text-align": "center", 'display': 'inline-block'}),
 	], href="/TADMaster/", target="_top"),
         html.Div(
         [
  		html.H2("TADMaster"),
-        ], style={"width": "150px", "text-align": "center", 'display': 'inline-block'}),
+        ], style={"width": "150px","height": "150px",   "text-align": "center", 'display': 'inline-block'}),
 
         ], style={"text-align": "center", "margin-bottom": "25px"}),
 	
@@ -867,7 +867,7 @@ def available_normalizations_options(id):
     data = Data.objects.get(pk=id)
     job_id = str(data.job_id)
     available_normalizations = []
-    path = '/storage/store/TADMaster/data/job_'+ job_id+'/output/'
+    path = '/var/www/html/TADMaster/Site/storage/data/job_'+ job_id+'/output/'
     for directory in os.listdir(path):
         available_normalizations.append(os.path.join(path, directory))
     available_options=[{'label': i[78:], 'value': i} for i in available_normalizations]

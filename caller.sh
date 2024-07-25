@@ -1,4 +1,4 @@
-source /storage/store/TADMaster/data/job_$1/TADMaster.config
+source /var/www/html/TADMaster/Site/storage/data/job_$1/TADMaster.config
 echo "Running TADMaster on $input_matrix"
 
 #--------------------------------------------------------------------------------------------------------
@@ -11,7 +11,7 @@ norm_name=$(basename $normalized_input .txt)
 home_path="/var/www/html/TADMaster"
 Caller_path="${home_path}/TADCallers"
 Norm_method_path="${home_path}/normalization" 
-job_path="/storage/store/TADMaster/data/job_$1"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+job_path="/var/www/html/TADMaster/Site/storage/data/job_$1"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 input_path="${input_matrix}"
 output_path="${job_path}/output"
 temp_path="${job_path}/temp_${norm_name}"

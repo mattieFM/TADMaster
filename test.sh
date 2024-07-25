@@ -21,6 +21,7 @@ log_path="${home_path}/Site/data/job_$1/log.txt"
 # Create the folder structure in job path
 #--------------------------------------------------------------------------------------------------------
 
+echo "Creating Folder Structure" > $log_path
 
 if [ -d $job_path ]
 then

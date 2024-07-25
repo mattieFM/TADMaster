@@ -1,0 +1,130 @@
+Start of Celery log
+-1
+[1;36m 
+ -------------- celery@biomlearn v4.4.2 (cliffs)
+--- ***** ----- 
+-- ******* ---- Linux-5.4.0-155-generic-x86_64-with-glibc2.29 2023-11-20 15:20:07
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         djangoproject:0x7f69a9033520
+- ** ---------- .> transport:   redis://localhost:6379//
+- ** ---------- .> results:     redis://localhost:6379/
+- *** --- * --- .> concurrency: 160 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+[0m[0m
+[tasks]
+  . data_processing
+  . djangoproject.celery.debug_task
+  . djcelery_email_send_multiple
+  . upload_bed_task
+[0m
+-1
+[1;36m 
+ -------------- celery@biomlearn v4.4.2 (cliffs)
+--- ***** ----- 
+-- ******* ---- Linux-5.4.0-155-generic-x86_64-with-glibc2.29 2023-12-06 19:43:16
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         djangoproject:0x7fdd8c5d8a90
+- ** ---------- .> transport:   redis://localhost:6379//
+- ** ---------- .> results:     redis://localhost:6379/
+- *** --- * --- .> concurrency: 160 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+[0m[0m
+[tasks]
+  . celery.accumulate
+  . celery.backend_cleanup
+  . celery.chain
+  . celery.chord
+  . celery.chord_unlock
+  . celery.chunks
+  . celery.group
+  . celery.map
+  . celery.starmap
+  . data_processing
+  . djangoproject.celery.debug_task
+  . djcelery_email_send_multiple
+  . upload_bed_task
+[0m
+-1
+[1;36m 
+ -------------- celery@biomlearn v4.4.2 (cliffs)
+--- ***** ----- 
+-- ******* ---- Linux-5.4.0-155-generic-x86_64-with-glibc2.29 2023-11-20 15:20:33
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         djangoproject:0x7f9e957c0520
+- ** ---------- .> transport:   redis://localhost:6379//
+- ** ---------- .> results:     redis://localhost:6379/
+- *** --- * --- .> concurrency: 160 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+[0m[0m
+[tasks]
+  . data_processing
+  . djangoproject.celery.debug_task
+  . djcelery_email_send_multiple
+  . upload_bed_task
+[0m
+-1
+[1;36m 
+ -------------- celery@biomlearn v4.4.2 (cliffs)
+--- ***** ----- 
+-- ******* ---- Linux-5.4.0-169-generic-x86_64-with-glibc2.29 2024-02-14 12:12:36
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         djangoproject:0x7f23b07a1b20
+- ** ---------- .> transport:   redis://localhost:6379//
+- ** ---------- .> results:     redis://localhost:6379/
+- *** --- * --- .> concurrency: 160 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+[0m[0m
+[tasks]
+  . data_processing
+  . djangoproject.celery.debug_task
+  . djcelery_email_send_multiple
+  . upload_bed_task
+[0m
+-1
+[1;36m 
+ -------------- celery@biomlearn v4.4.2 (cliffs)
+--- ***** ----- 
+-- ******* ---- Linux-5.4.0-169-generic-x86_64-with-glibc2.29 2024-02-14 12:12:48
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         djangoproject:0x7fc93e94f310
+- ** ---------- .> transport:   redis://localhost:6379//
+- ** ---------- .> results:     redis://localhost:6379/
+- *** --- * --- .> concurrency: 160 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+[0m[0m
+[tasks]
+  . data_processing
+  . djangoproject.celery.debug_task
+  . djcelery_email_send_multiple
+  . upload_bed_task
+[0m
+-1
+[1;36m 
+ -------------- celery@biomlearn v4.4.2 (cliffs)
+--- ***** ----- 
+-- ****

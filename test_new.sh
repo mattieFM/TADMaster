@@ -1,4 +1,4 @@
-source /storage/store/TADMaster/data/job_$1/TADMaster.config
+source /var/www/html/TADMaster/Site/storage/data/job_$1/TADMaster.config
 echo "Running TADMaster on $input_matrix"
 
 #--------------------------------------------------------------------------------------------------------
@@ -9,7 +9,7 @@ echo "Running TADMaster on $input_matrix"
 home_path="/var/www/html/TADMaster"
 Caller_path="${home_path}/TADCallers"
 Norm_method_path="${home_path}/normalization" 
-job_path="/storage/store/TADMaster/data/job_$1"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+job_path="/var/www/html/TADMaster/Site/storage/data/job_$1"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 input_path="${input_matrix}"
 output_path="${job_path}/output"
 temp_path="${job_path}/temp"
@@ -17,9 +17,13 @@ additional_file_path="${job_path}/additional_files"
 normalized_path="${job_path}/normalizations"
 log_path="${job_path}/log.txt"
 
+touch $log_path
+exec > $log_path 2>&1
+
 #--------------------------------------------------------------------------------------------------------
 # Create the folder structure in job path
 #--------------------------------------------------------------------------------------------------------
+echo "Folder Structure created" > $log_path
 
 
 if [ -d $job_path ]
@@ -36,7 +40,7 @@ fi
 #Enter normalization methods
 #--------------------------------------------------------------------------------------------------------
 
-echo "Normalizing Matrix" > $log_path
+echo "Normalizing Matrix" >> $log_path
 date >> $log_path 
 
 cd $Norm_method_path
@@ -50,8 +54,24 @@ fi
 if [ $data_input_type == 'cool' ]
 then
 	cool_or_h5_path="${input_path}"
-	taskset -c 0-100 cooler dump --join -H ${input_path} > ${job_path}/temp.txt
-	taskset -c 0-100 Rscript cool2sparse.r ${job_path}/temp.txt ${chr} ${job_path}/sparse_input.txt
+	MRES=$(cooler ls $cool_or_h5_path)
+	if (( $(grep -c . <<<"$MRES") > 1 ))
+	then
+		taskset -c 0-100 cooler dump --join -H ${input_path}::resolutions/${resolution} > $temp_path/mcool.txt
+		taskset -c 0-100 python3 cool_to_sparse.py -i $temp_path/mcool.txt -o ${job_path}/sparse_input.txt -r ${resolution} -c ${chr}	 
+
+	else
+		NCHR=$(cooler info -f nchroms ${input_path})           
+		if [ $NCHR == '1' ]
+		then
+			taskset -c 0-100 cooler dump --join -H ${input_path} > $temp_path/dump_sparse.txt
+			taskset -c 0-100 python3 cool_to_sparse.py -i $temp_path/dump_sparse.txt -o ${job_path}/sparse_input.txt -r ${resolution} -c ${chr}	  
+		else
+			hicConvertFormat --matrices ${input_path} --outFileName $temp_path/single.cool --inputFormat cool --outputFormat cool --chromosome ${chr}
+			taskset -c 0-100 cooler dump --join -H $temp_path/single.cool > $temp_path/dump_sparse.txt
+			taskset -c 0-100 python3 cool_to_sparse.py -i $temp_path/dump_sparse.txt -o ${job_path}/sparse_input.txt -r ${resolution} -c ${chr}	 
+		fi
+	fi
 	input_path="${job_path}/sparse_input.txt"
 fi
 
@@ -61,17 +81,19 @@ then
 	taskset -c 0-100 hicConvertFormat -m ${input_path} --inputFormat hic --outputFormat cool -o ${job_path}/matrix.cool --resolutions ${resolution} --chromosome ${chr}
 	mv "${job_path}/matrix_${resolution}.cool" "${job_path}/matrix.cool"
 	cool_or_h5_path="${job_path}/matrix.cool"
-	taskset -c 0-100 cooler dump --join ${job_path}/matrix.cool > $temp_path/temp.txt
-	taskset -c 0-100 Rscript cool2sparse.r $temp_path/temp.txt ${chr} ${job_path}/sparse_input.txt
+	hicConvertFormat --matrices ${job_path}/matrix.cool --outFileName $temp_path/single.cool --inputFormat cool --outputFormat cool --chromosome ${chr}
+	taskset -c 0-100 cooler dump --join -H $temp_path/single.cool > $temp_path/dump_sparse.txt
+	taskset -c 0-100 python3 cool_to_sparse.py -i $temp_path/dump_sparse.txt -o ${job_path}/sparse_input.txt -r ${resolution} -c ${chr}
 	input_path="${job_path}/sparse_input.txt"
 fi
 
 if [ $data_input_type == 'h5' ]
 then
-	cool_or_h5_path=input_path
-	taskset -c 0-100 hicConvertFormat -m ${input_path} --inputFormat h5 --outputFormat cool -o ${job_path}/matrix.cool --resolutions ${resolution} --chromosome ${chr}
-	taskset -c 0-100 cooler dump --join ${job_path}/matrix.cool > $temp_path/temp.txt
-	taskset -c 0-100 Rscript cool2sparse.r $temp_path/temp.txt ${chr} ${job_path}/sparse_input.txt
+	cool_or_h5_path="${input_path}"
+	hicConvertFormat -m ${input_path} --inputFormat h5 --outputFormat cool -o ${job_path}/matrix.cool --resolutions ${resolution} --chromosome ${chr}
+	hicConvertFormat --matrices ${job_path}/matrix.cool --outFileName $temp_path/single.cool --inputFormat cool --outputFormat cool --chromosome ${chr}
+	taskset -c 0-100 cooler dump --join -H $temp_path/single.cool > $temp_path/dump_sparse.txt
+	taskset -c 0-100 python3 cool_to_sparse.py -i $temp_path/dump_sparse.txt -o ${job_path}/sparse_input.txt -r ${resolution} -c ${chr}
 	input_path="${job_path}/sparse_input.txt"
 fi
 

@@ -1,0 +1,6 @@
+the input device is not a TTY
+the input device is not a TTY
+ee2a2882adbfdabe8c660a6e3d0f10b0cb1ceef977acee304378e74724af9d1e
+docker: Error response from daemon: driver failed programming external connectivity on endpoint stupefied_clarke (7e4e1c255505773379be4ca6b6cef942fb1f35d9f94deb1fa972f28738d00656): Bind for 0.0.0.0:4312 failed: port is already allocated.
+docker: Error response from daemon: Conflict. The container name "/TADMaster" is already in use by container "0ded074e441ab7107df25ec815be43357cbec5851b52ced85624c70f1401a767". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.

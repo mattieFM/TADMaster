@@ -1,0 +1,31 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    
+    "configurations": [
+        {
+            "name": "Python: Django",
+            "type": "python",
+            "request": "launch",
+            "python": "python3",
+            "program": "${workspaceFolder}/Site/manage.py",
+            "args": [
+                "runserver"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Celery Workers",
+            "cwd": "${workspaceFolder}/Site/",
+            "type": "python",
+            "request": "launch",
+            "python": "python3",
+            "module": "celery",
+            "console": "integratedTerminal",
+            "args": ["-A", "djangoproject", "worker", "-l", "debug"]
+        }
+    ]
+}

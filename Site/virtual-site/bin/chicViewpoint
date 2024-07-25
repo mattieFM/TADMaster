@@ -1,0 +1,8 @@
+#!/home/wolffj/miniconda2/envs/hic_py3/bin/python
+# -*- coding: utf-8 -*-
+
+from hicexplorer.chicViewpoint import main
+
+if __name__ == "__main__":
+    main()
+

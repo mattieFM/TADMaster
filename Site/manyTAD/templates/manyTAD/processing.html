@@ -12,7 +12,7 @@
         <h3>We are currently processing your job request. If you provided an email, we will email you when the job is completed.</h3>
 	<h3>Alternatively, you can use the button below to view your position in queue. This link will redirect to your job when completed.</h3>
 	<div style="text-align: center; margin-bottom: 25px">
-		<a href={% url 'queue' pk %} type="button" class="enviaPedido btn btn-primary btn-sm" style="padding: 15px 40px !important;">
+		<a id="viewQueueBtn" href={% url 'queue' pk %} type="" class="enviaPedido btn btn-primary btn-sm" style="padding: 15px 40px !important;">
     			<span class="visible-xs-block">View Queue Status</span>
   		</a>	 
 	</div>

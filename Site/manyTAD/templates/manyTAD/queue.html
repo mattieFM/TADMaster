@@ -6,14 +6,42 @@
     <div class="row">
       <div class="col-lg-12 text-center">
 	<div style="font-size: 24px;">
-	<i class="fa fa-spinner fa-spin" style="font-size:48px"></i>
+	<i class="fa fa-spinner fa-spin" style="font-size:48px" id="spinner"></i>
 	</div>
         <h1 class="mt-5">Job Status</h1>
-        <h3>{{position}}</h3>
-	<h3>You can bookmark this page to see your status in the future. Additionally this page will redirect you to your job when completed</h3>
+        <h3 id="displayText">{{position}}</h3>
+	<h3 id="additionalInfo">You can bookmark this page to see your status in the future. Additionally this page will redirect you to your job when completed</h3>
+      {% if fail %}
+        <form method="post" action="{% url 'visualize' data.pk %}">
+            <button  id="viewDataBtn" type="submit" " class="btn btn-primary">View Potentially Incorect Data
+            </button>
+            {% csrf_token %}
+					</form>
+      {% endif %}
       </div>
     </div>
   </div>
+
+  <!-- Refresh page every min -->
+  <script>
+    console.log("this page reloads every 60 seconds")
+    setTimeout(()=>{
+      location.reload();
+    }, 60 * 1000)
+  </script>
+
+  <!-- Handle displaying error/timeout text -->
+  <script>
+    const displayText = document.getElementById("displayText");
+    console.log(displayText.innerHTML);
+    if(displayText.innerHTML.includes("fail")){
+      const spinner = document.getElementById("spinner");
+      spinner.className = "fa fa-times";
+      spinner.style.fontSize = "96px"
+      document.getElementById("additionalInfo").style.visibility = "hidden";
+    }
+  </script>
 </body>
 {% endblock content %}
+
 

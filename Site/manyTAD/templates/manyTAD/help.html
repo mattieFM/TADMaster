@@ -3,17 +3,17 @@
 {% block content %}
 
 <body>
-  <div class="container" style="margin-top: 100px;">
+  <div id="toplevelContainer" class="container" style="margin-top: 100px;">
 
 	<h2 class="mb-5 header_text" style="text-align: center; font-size: 35px;">
-            <b style="color: #708090;" class="popins"> Interpreting Results From TADMaster </b>
+            <b id="interpret" style="color: #708090;" class="popins"> Interpreting Results From TADMaster </b>
         </h2>
 	<hr>
 
 
         <div class="col-md-12" style="margin-bottom: 25px">
-	<h3>Introduction</h3>
-	<p>
+	<h3 id="intro">Introduction</h3>
+	<p id="blerb">
 	TADMaster provides an analysis suite to directly evaluate the concordance level and robustness of two or more TADs data for a genome region.
 	This article will discuss how a user can the analysis to interpret the similarities and differences of the TADs data.
 	The focus of this tutorial will be analyzing the results of multiple TADS identified from chromosome 19 (GEO #GSE35156).
@@ -58,12 +58,12 @@
   		</a>
   		<a class="carousel-control-next" href="#carouselHeatmap" role="button" data-slide="next">
     			<span class="carousel-control-next-icon" aria-hidden="true" ></span>
-    			<span class="sr-only">Next</span>
+    			<span id="next" class="sr-only">Next</span>
   		</a>
 		 </div>
 <hr>
 
-	<h3>Heatmap</h3>
+	<h3 id="heatmap">Heatmap</h3>
 	<hr>
 		<div id="carouselHeatmap" class="carousel slide" data-interval="false" >
 			<ol class="carousel-indicators">
@@ -95,11 +95,11 @@
     				</div>
 			</div>
   		</div>
-		<a class="carousel-control-prev" href="#carouselHeatmap" role="button" data-slide="prev">
+		<a id="prev" class="carousel-control-prev" href="#carouselHeatmap" role="button" data-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
     			<span class="sr-only">Previous</span>
   		</a>
-  		<a class="carousel-control-next" href="#carouselHeatmap" role="button" data-slide="next">
+  		<a id="next" class="carousel-control-next" href="#carouselHeatmap" role="button" data-slide="next">
     			<span class="carousel-control-next-icon" aria-hidden="true" ></span>
     			<span class="sr-only">Next</span>
   		</a>
@@ -129,7 +129,7 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="../static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+	<script src="/static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
 
 
 

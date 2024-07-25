@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
-<div class="{% plotly_class name="HeatMap" template_type="div-direct"%}">
+<div id="big" class="{% plotly_class name="HeatMap" template_type="div-direct"%}">
 	{% plotly_app name='HeatMap' ratio=1.0 initial_arguments=dash_context %}
 
 </div>

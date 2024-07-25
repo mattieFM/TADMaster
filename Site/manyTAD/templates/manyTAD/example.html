@@ -5,7 +5,7 @@
 <body>
   <div class="container" style="margin-top: 100px;">
 
-	<h2 class="mb-5 header_text" style="text-align: center; font-size: 35px;">
+	<h2 id="exampleDatasets" class="mb-5 header_text" style="text-align: center; font-size: 35px;">
             <b style="color: #708090;" class="popins"> Example Datasets </b>
         </h2>
 
@@ -14,7 +14,7 @@
         <div class="col-md-12" style="margin-bottom: 25px">
           
 	<h3>Human Embronic Stem Cells (HESC)</h3>
-	<p>
+	<p id="textBlerb">
 	Analysis of all methods and normalizations separated by chromosome. To download the raw sequencing data and the mapped reads, 
 	please visit the GEO Database under the GEO accession number GSE35156 	
         </p>
@@ -22,44 +22,52 @@
 	<h3>Dixon et. al. | Nature 2012</h3>
 
 	<hr>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/389/'>chr 1	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/392/'>chr 2	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/393/'>chr 3	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/421/'>chr 4	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/395/'>chr 5	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/396/'>chr 6	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/397/'>chr 7	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/413/'>chr 8	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/414/'>chr 9	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/415/'>chr 10	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/379/'>chr 11	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/374/'>chr 12	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/371/'>chr 13	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/370/'>chr 14	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/367/'>chr 15	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/366/'>chr 16	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/365/'>chr 17	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/359/'>chr 18	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/412/'>chr 19	</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/358/'>chr 20</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/352/'>chr 21</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/357/'>chr 22</a>
-	<a href='http://biomlearn.uccs.edu/TADMaster/visualize_example/387/'>chr 23</a>
+	<a id="chr1" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/389/'>chr 1	</a>
+	<a id="chr2" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/392/'>chr 2	</a>
+	<a id="chr3" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/393/'>chr 3	</a>
+	<a id="chr4" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/421/'>chr 4	</a>
+	<a id="chr5" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/395/'>chr 5	</a>
+	<a id="chr6" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/396/'>chr 6	</a>
+	<a id="chr7" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/397/'>chr 7	</a>
+	<a id="chr8" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/413/'>chr 8	</a>
+	<a id="chr9" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/414/'>chr 9	</a>
+	<a id="chr10" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/415/'>chr 10	</a>
+	<a id="chr11" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/379/'>chr 11	</a>
+	<a id="chr12" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/374/'>chr 12	</a>
+	<a id="chr13" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/371/'>chr 13	</a>
+	<a id="chr14" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/370/'>chr 14	</a>
+	<a id="chr15" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/367/'>chr 15	</a>
+	<a id="chr16" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/366/'>chr 16	</a>
+	<a id="chr17" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/365/'>chr 17	</a>
+	<a id="chr18" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/359/'>chr 18	</a>
+	<a id="chr19" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/412/'>chr 19	</a>
+	<a id="chr20" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/358/'>chr 20</a>
+	<a id="chr21" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/352/'>chr 21</a>
+	<a id="chr22" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/357/'>chr 22</a>
+	<a id="chr23" href='http://biomlearn.uccs.edu/TADMaster/visualize_example/387/'>chr 23</a>
 	
 	<br>
 	<hr>
+	<div id="videoTutorial" style= "text-align: center;">
+				<a href='https://youtu.be/sXxrU3XSRxM'>Tutorial Video --> How to add more .bed TAD files to compare in Visualization and Comparative Analysis Page	</a>
+	</div>
 	<div style= "text-align: center;">
 		<object style="height: 390px; width: 640px"><param name="movie" value="https://youtu.be/sXxrU3XSRxM"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><embed src="http://www.youtube.com/v/sXxrU3XSRxM?version=3" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="390"></object>
 	</div>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="../static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+	<script src="/static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
 	<br>
 	<hr>
-	<h3>How to Interpret the Results Returned: Using Example Result from TADMaster</h3>
+	<h3 id="howTo">How to Interpret the Results Returned: Using Example Result from TADMaster</h3>
 	<div style= "text-align: center;">
-		<object style="height: 390px; width: 640px"><param name="movie" value="https://youtu.be/E56BavyQ-Dk"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><embed src="http://www.youtube.com/v/E56BavyQ-Dk?version=3" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="390"></object>
+		<a id="vid2" href='https://youtu.be/E56BavyQ-Dk?t=198'>Tutorial Video --> How To Interpret the Results Returned: Using Example Output Result</a>
 	</div>
-	
+	<!--
+	<div style= "text-align: center;">
+		<object style="height: 390px; width: 640px"><param name="movie" value="https://youtu.be/E56BavyQ-Dk"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><embed src="https://youtu.be/E56BavyQ-Dk?version=3" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="390"></object>
+	</div>
+	-->
 	
 	<hr>
 

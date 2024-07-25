@@ -4,7 +4,7 @@ from django.core.files.base import ContentFile
 
 
 def get_upload_path(instance, filename):
-	return os.path.join('/storage/store/TADMaster/data', "job_%s" % str(instance.job_id), filename)
+	return os.path.join('/var/www/html/TADMaster/Site/storage/data/', "job_%s" % str(instance.job_id), filename)
 
 class Data(models.Model):
 	#REQUIRED
@@ -12,11 +12,11 @@ class Data(models.Model):
 	chromosome = models.IntegerField()
 	description = models.CharField(max_length=255, blank=True)
 	email = models.CharField(max_length=100, blank=True)
-	document = models.FileField(upload_to=get_upload_path)
+	document = models.FileField(upload_to=get_upload_path, blank=True, null=True)
 	resolution = models.IntegerField(default=0)
 	uploaded_at = models.DateTimeField(auto_now_add=True)
 	job_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
-	status = models.CharField(max_length=25, default='Pending')
+	status = models.CharField(max_length=25, default='defaultValue')
 	#Data Input
 	data_input_type = models.CharField(max_length=10, default='square')
 	#NORMALIZATION
@@ -65,7 +65,7 @@ class Data(models.Model):
 
 #overloading the delete function to delete file in directory
 	def delete(self, *args, **kwargs):
-		path = os.path.join('/storage/store/TADMaster/data/', "job_%s" % str(self.job_id))
+		path = os.path.join('/var/www/html/TADMaster/Site/storage/data/', "job_%s" % str(self.job_id))
 		self.document.delete()
 		super().delete(*args, **kwargs)
 		if os.path.exists(path):
@@ -74,7 +74,7 @@ class Data(models.Model):
 
 #needs refactoring eventually
 	def make_config(self):
-		path = os.path.join('/storage/store/TADMaster/data', "job_%s" % str(self.job_id), "TADMaster.config")
+		path = os.path.join('/var/www/html/TADMaster/Site/storage/data/', "job_%s" % str(self.job_id), "TADMaster.config")
 		f = open(path, "w")
 		f.write("#Required\n\n")
 		f.write("input_matrix=%s \n" % str(self.document))

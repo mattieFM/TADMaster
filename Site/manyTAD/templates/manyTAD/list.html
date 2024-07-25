@@ -12,7 +12,9 @@
 			<th scope="col">Uploaded</th>
 			<th scope="col">Status</th>
 			<th scope="col">Visualize</th>
+			<th scope="col">Other</th>
 			<th scope="col">Delete</th>
+			
 			</tr>
 		</thead>
 		<tbody>
@@ -25,11 +27,33 @@
 				<td>
 					{% if data.status == "Complete" %}
 						<form method="post" action="{% url 'visualize' data.pk %}">
-							<button type="submit" " class="btn btn-primary">View Data
+							<button  id="viewDataBtn" type="submit" " class="btn btn-primary">View Data
+							</button>
+							{% csrf_token %}
+						</form>
+					{% else %}
+						<form method="post" action="{% url 'visualize' data.pk %}">
+							<button  id="viewDataBtn" type="submit" " class="btn btn-primary">Force View
 							</button>
 							{% csrf_token %}
 						</form>
 					{% endif %}
+				</td>
+				<td>
+					<form method="post" action="{% url 'fail_data' data.pk %}">
+						<button type="submit" class="btn btn-warning btn-sm">Set Fail</button>
+						{% csrf_token %}
+					</form>
+					
+					{% if data.has_ran == 0 %}
+						<form method="post" action="{% url 'processing' data.pk %}">
+							<button type="submit" class="btn btn-warning btn-sm">run tad</button>
+							{% csrf_token %}
+						<form method="post" action="{% url 'processing' data.pk %}">
+							<button type="submit" class="btn btn-warning btn-sm">run tad+</button>
+							{% csrf_token %}
+					{% endif %}
+					</form>
 				</td>
 				<td>
 					<form method="post" action="{% url 'delete_data' data.pk %}">
@@ -37,6 +61,7 @@
 						{% csrf_token %}
 					</form>
 				</td>
+				
 			</tr>
 			{% endfor %}
 		</tbody>

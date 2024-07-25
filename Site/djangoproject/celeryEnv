@@ -1,0 +1,15 @@
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'US/Mountain'
+CELERY_APP="djangoproject"
+CELERYD_CHDIR="/var/www/html/TADMaster/Site"
+CELERYD_OPTS="--time-limit=300 --concurrency=1"
+CELERYD_LOG_FILE="/var/www/html/TADMaster/Site/CeleryLogs/%n%I.log"
+CELERYD_PID_FILE="/var/www/html/TADMaster/Site/CeleryLogs/%n.pid"
+CELERYD_USER="celery"
+CELERYD_GROUP="celery"
+CELERYD_LOG_LEVEL="INFO"
+CELERY_CREATE_DIRS=1

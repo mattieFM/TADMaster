@@ -1,0 +1,75 @@
+{% extends 'manyTAD/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<body>
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+	
+	<div class="container" style="margin-top: 100px;">
+		<form method="post" enctype="multipart/form-data">
+	
+        <div class="row mb_25">
+	<!--<h2 style="color: #2e6c80;">Upload:</h2>-->
+		<h3 class="" style="text-align: left;">
+            <b style="color: #708090;"> PROVIDE JOB INFORMATION: </b>
+        </h3>
+
+        <div class="col-md-10" style="margin-bottom: 25px">
+			<div id=alert-box></div>
+        		<form method="post" enctype="multipart/form-data">
+        			
+				<div class="form-group">
+					{{ form|crispy }}
+				</div>
+				<button id="submitBtn" type="submit" class="btn btn-secondary btn-lg" style="float: right;">
+        			<h4 style="color: #fff;" class="popins_reg">NEXT&nbsp;&nbsp;<i class="fas fa-hand-point-right"></i></h4>
+        		</button>
+	
+				</form>
+        	</div>
+        </div>
+
+	 
+
+        
+    	</div>
+
+</form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+
+<script>
+var error = '{{ error }}';
+
+$(document).ready(function(){
+
+	$("[for^='id_']").addClass("inter_bold");
+
+
+	$(window).on('load resize', function() {
+        if ($(window).width() >= 577 && $(window).width() < 1199) {
+            $('.title').css({'font-size': '12px', 'line-height': '1.7'});
+        }
+        else{
+            $('.title').css('font-size', '24px');
+        } 
+    });
+
+	if( error == "input type error") {
+    window.alert(" Please select an input data type (e.g. .hic, . h5, etc)");
+	}
+
+	if( error == "resolution error") {
+    window.alert(" .hic data must have a resolution of 2500000, 1000000, 500000, 250000, 100000, 50000, 25000, 10000, or 5000 basepairs");
+
+	}
+
+});
+</script>
+</body>
+
+
+{% endblock content %}

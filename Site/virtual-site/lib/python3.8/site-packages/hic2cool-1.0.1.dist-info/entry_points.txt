@@ -1,0 +1,3 @@
+[console_scripts]
+hic2cool=hic2cool.__main__:main
+

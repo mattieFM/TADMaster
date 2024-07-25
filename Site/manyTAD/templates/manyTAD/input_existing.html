@@ -13,11 +13,11 @@
 		<form method="post" enctype="multipart/form-data">
 
 	<h3  style="text-align: left;">
-            	<b style="color: #708090;"> SELECT HI-C DATA FORMAT </b>
+            	<b style="color: #708090;"> SELECT HI-C DATA FORMAT</b>
         </h3>
 
 	
-	 <a  href = "https://github.com/OluwadareLab/TADMaster/wiki/TADMaster" target="_blank">Tryout by following tutorial instruction at this link using provided sample data</a>
+	 <a id="tryoutBtn" href = "https://github.com/OluwadareLab/TADMaster/wiki/TADMaster" target="_blank">Tryout by following tutorial instruction at this link using provided sample data</a>
 
         <div class="col-md-12" style="margin-bottom: 25px">
         	<div class="card-deck">
@@ -118,13 +118,9 @@
 			<div id="cancel-box" class="not-visible" style="margin-bottom: 10px;">
 				<button id="cancel-btn" class="btn btn-danger">cancel</button>
 			</div> 
+
         	</div>
         </div>
-        <a id="next-div" class="not-visible" href='/{{pk}}/bed'  style="float: right;">
-        	<button class="btn btn-secondary btn-lg" style="float: right;">
-        		<h4 style="color: #fff;" class="popins_reg">NEXT&nbsp;&nbsp;<i class="fas fa-hand-point-right"></i></h4>
-        	</button>
-        </a>
 
 	 
 
@@ -135,7 +131,7 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="../static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+<script src="/static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
 
 <script>
 var error = '{{ error }}';

@@ -46,8 +46,8 @@
 
                 <div class="float-left">
                   <li class="list-inline-item app-search">
-                          <a href="/TADMaster/" class="logo" style="margin-left: 70px;">
-                        <img src="{% static "/image/nlogo.svg" %}" alt="logo" style="height: 90px; width: 120px;">
+                          <a id="topLogo" href="/" class="logo" style="margin-left: 70px;">
+                        <img src="{% static "/image/nlogo.svg" %}" alt="logo" style="height: 90px; width: 120px;" id="Baselogo">
                     </a>
                     </li>
                 </div>
@@ -57,28 +57,28 @@
                 <div class="float-left">
                   <li class="list-inline-item app-search">
                           <h2 class="page-title header_text" style="padding-left: 0px;">
-                      <b class="header popins_black"> TADMaster Plus </b>
+                      <b class="header popins_black" id="TADMasterPlusLogoText"> TADMaster Plus </b>
                   </h2>
                     </li>
                 </div>
                   
                   <div class="float-right">
                     <li class="list-inline-item dropdown notification-list">
-                        <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user example" data-toggle="dropdown" href="http://biomlearn.uccs.edu/TADMaster/examples" role="button" aria-haspopup="false" aria-expanded="false" title="Example" style="display: contents;font-family: 'popins' !important;color: black;">
+                        <a id="exampleBtn" class="nav-link dropdown-toggle arrow-none waves-effect nav-user example" data-toggle="dropdown" href="http://biomlearn.uccs.edu/TADMaster/examples" role="button" aria-haspopup="false" aria-expanded="false" title="Example" style="display: contents;font-family: 'popins' !important;color: black;">
                             <img src="{% static "/image/example.png" %}" alt="user" class="rounded-circle">
                            Example &nbsp;
                         </a>
                     </li>
 
                     <li class="list-inline-item dropdown notification-list">
-                        <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user documentation" data-toggle="dropdown" href="https://github.com/OluwadareLab/TADMaster/wiki" role="button" aria-haspopup="false" aria-expanded="false" title="Help and Tutorial" target="_blank" style="display: contents;font-family: 'popins' !important;color: black;">
+                        <a id="helpBtn" class="nav-link dropdown-toggle arrow-none waves-effect nav-user documentation" data-toggle="dropdown" href="https://github.com/OluwadareLab/TADMaster/wiki" role="button" aria-haspopup="false" aria-expanded="false" title="Help and Tutorial" target="_blank" style="display: contents;font-family: 'popins' !important;color: black;">
                             <img src="{% static "/image/doc1.png" %}" alt="user" class="rounded-circle"> 
                            Help &nbsp;
                         </a>
                     </li>
 
                     <li class="list-inline-item dropdown notification-list">
-                        <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user github" data-toggle="dropdown" href="https://github.com/OluwadareLab/TADMaster" role="button" aria-haspopup="false" aria-expanded="false" title="Github" style="display: contents;font-family: 'popins' !important;color: black;">
+                        <a id="githubBtn" class="nav-link dropdown-toggle arrow-none waves-effect nav-user github" data-toggle="dropdown" href="https://github.com/OluwadareLab/TADMaster" role="button" aria-haspopup="false" aria-expanded="false" title="Github" style="display: contents;font-family: 'popins' !important;color: black;">
                             <img src="{% static "/image/git.png" %}" alt="user" class="rounded-circle"> 
                            Github &nbsp;
                         </a>
@@ -96,7 +96,7 @@
     		</div>
     		<div id="cookieNotice" class="d-flex align-items-center align-self-center card p-3 text-center cookies">
 			<img src="https://i.imgur.com/Tl8ZBUe.png" width="50">
-			<span class="mt-2">This website uses cookies or similar technologies, to enhance your browsing experience. By continuing to use our website, you acknowledge that information, such as IP, may be recorded. 
+			<span id="cookiesPrompt" class="mt-2">This website uses cookies or similar technologies, to enhance your browsing experience. By continuing to use our website, you acknowledge that information, such as IP, may be recorded. 
 			
 			</span>
 		
@@ -125,7 +125,7 @@
 </div>
     
     <div style="float: right">
-<span class="" style="margin-top: 5px; font-size: 14px"> &copy 2021 Oluwadare Lab</span>
+<span class="" style="margin-top: 5px; font-size: 14px"> &copy 2021-2023 Oluwadare Lab</span>
 </div>
     
 	  
@@ -133,7 +133,7 @@
 
 
 
-	<script src="../static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+	<script src="/static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
 
 	<script>
 

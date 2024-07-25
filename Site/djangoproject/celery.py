@@ -13,6 +13,13 @@ app.config_from_object('django.conf:settings')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
 
+
 @app.task(bind=True)
 def debug_task(self):
     print('Request: {0!r}'.format(self.request))
+    log = open("/var/www/html/TADMaster/Site/manyTAD/jobs.log", "a")
+    log.write("debug task has run. IE: tasks are working in some capacity")
+    log.write("\n")
+    log.close()
+    
+debug_task.delay()

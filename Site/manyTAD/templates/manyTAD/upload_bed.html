@@ -7,9 +7,12 @@
 	<div class="container" style="margin-top: 100px">
         <div class="row mb_25">
         	<div class="col-md-6 offset-md-3">
-
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Example Bed File</button>
-
+	
+	<li> <a  href = "https://github.com/OluwadareLab/TADMaster/wiki/TADMaster#step-2--upload-bed-file" target="_blank">Tryout by following tutorial instruction at this link using provided sample data</a>
+	<br>
+	<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Example Bed File</button> -->
+	<li><a  href = "https://github.com/OluwadareLab/TADMaster/wiki/TADMaster#-bed-file-formats-accepted-" target="_blank">See the Bed Formats Accepted on our Tutorial page</a> 
+	<br>
 	<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
   		<div class="modal-dialog">
     	<div class="modal-content">
@@ -20,7 +23,7 @@
 		</div>
 	</div>
 			
-			<form method="post" enctype="multipart/form-data">
+			<form method="post" id="bedForm" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="form-group" style="margin-top: 10px; margin-bottom: 10px;">
 				{{ form|crispy }}
@@ -35,15 +38,46 @@
 		</div>
 		<div style="margin-bottom: 100px"></div>
 		<div>
-		<a href="{%url 'upload_existing' %}" class="btn btn-secondary btn-lg" style="float: left;">
-			<h4 style="color: #fff;">BACK&nbsp;&nbsp;<i class="fas fa-hand-point-left"></i></h4>
+        		<a class="btn btn-secondary btn-lg" style="float: left;" onclick="history.back()">
+        			<h4 style="color: #fff;" class="popins_reg">BACK&nbsp;&nbsp;<i class="fas fa-hand-point-left"></i></h4>
+        		</a>
 		</a>
-		<button type="submit" class="btn btn-success btn-lg" style="float: right; color: #008000;">
-			<h4 style="color: #fff;">Submit&nbsp;&nbsp;<i class="fas fa-hand-point-right"></i></h4>
-		</button>
+		<div>
+			<button type="submit" form="bedForm" class="btn btn-success btn-lg" style="float: right; color: #008000;">
+				<h4 style="color: #fff;">Submit&nbsp;&nbsp;<i class="fas fa-hand-point-right"></i></h4>
+			</button>
+		</div>
+		
 		</div>
 
 	</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script>
+var error = '{{ error }}';
+
+$(document).ready(function(){
+
+	if( error == "Format error file 1") {
+    window.alert("The bed file format does not comply with the needed format for the TADMaster visualization. Please review the resources at the top of the page for the accepted bed formats.");
+	}
+
+	if( error == " Format error file 2") {
+    window.alert("The bed file format does not comply with the needed format for the TADMaster visualization. Please review the resources at the top of the page for the accepted bed formats.");
+
+	}
+
+	if( error == "Format error file 1 Format error file 2") {
+    window.alert("The bed file format does not comply with the needed format for the TADMaster visualization. Please review the resources at the top of the page for the accepted bed formats.");
+
+	}
+
+
+});
+</script>
+
 </body>
 
 {% endblock content %}

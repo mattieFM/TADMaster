@@ -152,7 +152,7 @@ def available_normalizations_options(id):
     data = Data.objects.get(pk=id)
     job_id = str(data.job_id)
     available_normalizations = []
-    path = '/storage/store/TADMaster/data/job_'+ job_id+'/output/'
+    path = '/var/www/html/TADMaster/Site/storage/data/job_'+ job_id+'/output/'
     for directory in os.listdir(path):
         available_normalizations.append(os.path.join(path, directory))
     available_options=[{'label': i[78:], 'value': i} for i in available_normalizations]

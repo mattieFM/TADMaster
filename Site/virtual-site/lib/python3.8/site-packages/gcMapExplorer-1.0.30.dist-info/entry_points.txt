@@ -1,0 +1,3 @@
+[console_scripts]
+gcMapExplorer = gcMapExplorer:main.main
+

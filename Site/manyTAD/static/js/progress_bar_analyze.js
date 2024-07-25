@@ -75,7 +75,8 @@ input.addEventListener('change', ()=>{
                     } else{
                         xhr.abort()
                         alertBox.innerHTML = `<div class="alert alert-danger" role="alert">
-                                    Files Must be under 700MB in size.
+                                    Files Must be under 700MB in size. Please use the docker version provided on TADMaster GitHub page to run locally or analyze without a contact matrix.
+
                                 </div>`
                         setTimeout(()=>{
                         uploadForm.reset()

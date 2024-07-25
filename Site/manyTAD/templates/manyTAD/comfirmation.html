@@ -1,4 +1,4 @@
-{% extends 'manyTAD/base.html' %}
+{% extends 'manyTAD/base_plus.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -9,59 +9,59 @@
 <body style="font-size: 17px;">
 		
 		<div class="container" style="margin-top: 100px">
-			<h1 class="mb-5 header_text" style="text-align: center;">
+			<h1 id="reviewSettings" class="mb-5 header_text" style="text-align: center;">
 				Review Settings and Upload File 
 			</h1>
 			<hr>
-			<h2 class="mb-5 header_text" style="text-align: center;">
+			<h2 id="genInfo" class="mb-5 header_text" style="text-align: center;">
 			<b style="color: #708090;">  General Information </b>
 			</h2>
-			<h4 style="text-align: center;"> Please review the submited information then upload your HiC data at the bottom of the page.</h4>
+			<h4 id="review" style="text-align: center;"> Please review the submited information then upload your HiC data at the bottom of the page.</h4>
 			<hr>
-			<div style="text-align: left;"> 
+			<div id="titleLabel"style="text-align: left;"> 
 				<h3>Title: </h3>
 				<p>{{title}}</p>
 			</div> 
-			<div  style="text-align: left;"> 
+			<div id="descLabel" style="text-align: left;"> 
 				<h3>Description:</h3> 
 				<p>{{description}}</p>
 			</div> 
-			<div  style="text-align: left;"> 
+			<div id="emailLabel"  style="text-align: left;"> 
 				<h3>Email: </h3>
 				<p>{{email}}
 				</p>
 			</div> 
-			<div  style="text-align: left;"> 		
+			<div id="resolutionLabel" style="text-align: left;"> 		
 				<h3>Resolution: </h3>
 				<p>{{resolution}}</p>
 			</div> 
-			<div  style="text-align: left;"> 
+			<div id="chromosoneLabel" style="text-align: left;"> 
 				<h3>Chromosome: </h3>
 				<p>{{chromosome}}</p>
 			</div> 
-			<div  style="text-align: left;"> 
+			<div id="dataInputType" style="text-align: left;"> 
 				<h3>Data input type: </h3><p>{{data_input_type}}</p>
 			</div> 
 			<hr>
-			<h2 class="mb-5 header_text" style="text-align: center;">
+			<h2 id="NormMethodsLabel" class="mb-5 header_text" style="text-align: center;">
 			<b style="color: #708090;">  Normalization Methods </b>
 			</h2>
 			<hr>
-			<div  style="text-align: left;"> 
+			<div id="SelectionNormsMethods" style="text-align: left;"> 
 				<h3>Selected Normalization methods:  </h3>
 				<p>{{normalizations}}</p>
 			</div> 
 			<hr>
-			<h2 class="mb-5 header_text" style="text-align: center;">
+			<h2 id="TADCallersMethodsLabel" class="mb-5 header_text" style="text-align: center;">
 			<b style="color: #708090;">  TAD Caller Methods </b>
 			</h2>
 			<hr>
-			<div  style="text-align: left;"> 
+			<div id="selectedTADMethodsLabel" style="text-align: left;"> 
 				<h3>Selected TAD Methods:  </h3>
 				<p>{{callers}}</p>
 			</div>
 			<hr>
-			<h2 class="mb-5 header_text" style="text-align: center;">
+			<h2 id="uploadHICData" class="mb-5 header_text" style="text-align: center;">
 			  Upload HiC DATA
 			</h2>
 			<p style="text-align: center;"> Please upload your data in your previously selected format.</p>

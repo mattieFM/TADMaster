@@ -1,4 +1,5 @@
 import dash
+import csv
 import os
 import base64
 import dash_core_components as dcc
@@ -38,6 +39,7 @@ app.layout = html.Div([
     dcc.Input(id='target_id', type='hidden', value='filler text'),
     dcc.Location(id='url', refresh=False),
     dcc.Store(id='resolution'),
+    dcc.Store(id='chromosome'),
     dcc.Store(id='TAD dict'),
     dcc.Store(id='TAD dict binned'),
     dcc.Store(id='Color dict'),
@@ -62,12 +64,12 @@ app.layout = html.Div([
                                             html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
                                                      style={'height': '75%', 'width': '75%'}),
 
-                                        ], style={"width": "150px", "text-align": "center", 'display': 'inline-block'}),
+                                        ], style={"width": "150px","height": "150px",   "text-align": "center", 'display': 'inline-block'}),
                                 ], href="/TADMaster/", target="_top"),
                                 html.Div(
                                     [
                                         html.H2("TADMaster"),
-                                    ], style={"width": "150px", "text-align": "center", 'display': 'inline-block'}),
+                                    ], style={"width": "150px","height": "150px",   "text-align": "center", 'display': 'inline-block'}),
 
                             ], style={"text-align": "center", "margin-bottom": "25px"}),
 
@@ -161,6 +163,17 @@ app.layout = html.Div([
                                 style={"textAlign": "center", "color": "#708090", "fontWeight": "600"}),
                         html.Div(id='page_description', style={"text-align": "center", "margin-top": "5px"}),
 
+			html.Div([
+                        html.H2(children="Resolution", className="header_text",
+                                style={"textAlign": "center", "color": "#708090", "fontWeight": "600"}),
+                        html.Div(id='page_resolution', style={"text-align": "center", "margin-top": "5px"}),
+			],style={'width': '49%', 'display': 'inline-block'}),
+			html.Div([
+                        html.H2(children="Chromosome", className="header_text",
+                                style={"textAlign": "center", "color": "#708090", "fontWeight": "600"}),
+                        html.Div(id='page_chromosome', style={"text-align": "center", "margin-top": "5px"}),
+			],style={'width': '49%', 'display': 'inline-block'}),
+
                         html.Div([
                             html.H2(children="Select Normalization", className="header_text",
                                     style={"textAlign": "center", "color": "#708090", "fontWeight": "600"}),
@@ -174,36 +187,10 @@ app.layout = html.Div([
                                 ]
                             ),
 
-                        ], style={"text-align": "center", "margin-top": "25px"}),
+                        ], style={"text-align": "center", "margin-top": "5px"}),
                         # ------------------------------------------------------------------------------
                         # Heat Map
                         # ------------------------------------------------------------------------------
-                        html.Div([
-                            dbc.Button(
-                                html.H4(children="TAD Heat Map", className="header_text",
-                                        style={"textAlign": "center", "fontWeight": "600", "marginBottom": "0px"}),
-                                id="collapse-button-heatmap",
-                                size='lg',
-                                color="light",
-                                block=True,
-                                style={"marginTop": "50px"}
-                            ),
-
-                            dbc.Collapse(
-                                [
-                                    dbc.Card([dbc.CardBody("Please click below to view the heatmap for your results."),
-                                              dbc.Button("View Heatmap", id='heatmap button', href="",
-                                                         external_link=True, target="_blank",
-                                                         style={"align-self": "center", "margin-bottom": "20px"}),
-                                              ], style={'marginTop': 20}),
-
-                                ],
-
-                                id="collapse-heatmap",
-                                is_open=True
-                            )
-
-                        ], style={'marginTop': 20}),
 
                         # ------------------------------------------------------------------------------
                         # Number of TADs
@@ -411,7 +398,7 @@ app.layout = html.Div([
 
                                                     children=dbc.FormGroup(
                                                         [
-                                                            dbc.Label("Select Tolerance:", style={"marginTop": "10px"}),
+                                                            dbc.Label("Select Tolerance (genomic bins):", style={"marginTop": "10px"}),
                                                             dbc.RadioItems(
                                                                 id="Stacked Boundary Options",
                                                                 options=[{'label': 'Zero', 'value': '0'},
@@ -478,7 +465,7 @@ app.layout = html.Div([
 
                                                     children=dbc.FormGroup(
                                                         [
-                                                            dbc.Label("Select Tolerance:", style={"marginTop": "10px"}),
+                                                            dbc.Label("Select Tolerance (genomic bins):", style={"marginTop": "10px"}),
                                                             dbc.RadioItems(
                                                                 id="Stacked Domain Options",
                                                                 options=[{'label': 'Zero', 'value': '0'},
@@ -948,7 +935,7 @@ def available_normalizations_options(id):
     data = Data.objects.get(pk=id)
     job_id = str(data.job_id)
     available_normalizations = []
-    path = '/storage/store/TADMaster/data/job_' + job_id + '/output/'
+    path = '/var/www/html/TADMaster/Site/storage/data/job_' + job_id + '/output/'
     for directory in os.listdir(path):
         available_normalizations.append(os.path.join(path, directory))
     available_options = [{'label': i[78:], 'value': i} for i in available_normalizations]
@@ -965,12 +952,15 @@ def set_available_normalizations_value(available_options):
 @app.callback(
     [Output('page_title', 'children'),
      Output('page_description', 'children'),
-     Output('resolution', 'data')],
+     Output('page_resolution', 'children'),
+     Output('page_chromosome', 'children'),
+     Output('resolution', 'data'),
+     Output('chromosome', 'data')],
     [Input('target_id', 'value')])
 def set_title(id):
     print("Getting Title")
     data = Data.objects.get(pk=id)
-    return data.title, data.description, data.resolution
+    return data.title, data.description, str(data.resolution), str(data.chromosome), data.resolution, data.chromosome
 
 
 @app.callback(
@@ -978,9 +968,28 @@ def set_title(id):
      Output('Whisker Options', 'options'),
      Output('Boundary Options', 'options'),
      Output('MoC Options', 'options')],
-    [Input('Normalization', 'value')])
-def set_options(norm):
-    options = [{'label': i[:-4], 'value': i} for i in os.listdir(norm)]
+    [Input('Normalization', 'value'),
+     Input("resolution", "data"),
+     Input("chromosome", "data")])
+def set_options(norm_path, resolution, chromosome):
+    options = []
+    for filename in os.listdir(norm_path):
+        with open(os.path.join(norm_path, filename), 'r') as file:
+            spamreader = csv.reader(file)
+            sniffer = csv.Sniffer()
+            dialect = sniffer.sniff(file.read(1024))
+            file.seek(0)
+            tad_data = [[digit for digit in line.strip().split(sep=dialect.delimiter)] for line in file]
+            if len(tad_data[0]) == 2:
+                tad_data = np.asarray(tad_data, dtype='float')
+            elif len(tad_data[0]) == 3:
+                temp_data = []
+                for i in range(len(tad_data)):
+                    if tad_data[i][0] == str(chromosome) or tad_data[i][0] == 'chr' + str(chromosome):
+                        temp_data.append(tad_data[i][1:])
+                tad_data = np.asarray(temp_data, dtype='float')
+            if tad_data.size != 0:
+                options.append({'label': filename[:-4], 'value': filename})	
     return [options, options, options, options]
 
 
@@ -1075,8 +1084,9 @@ def set_num_tads_options(size):
      Output("TAD dict binned", "data"),
      Output("Color dict", "data")],
     [Input('Normalization', 'value'),
-     Input("resolution", "data")])
-def data_extract(norm_path, resolution):
+     Input("resolution", "data"),
+     Input("chromosome", "data")])
+def data_extract(norm_path, resolution, chromosome):
     print("Extracting Data")
     color_itt = 0
     color_dict = OrderedDict()
@@ -1084,12 +1094,25 @@ def data_extract(norm_path, resolution):
     tad_dict_binned = OrderedDict()
     for filename in os.listdir(norm_path):
         with open(os.path.join(norm_path, filename), 'r') as file:
-            tad_data = [[float(digit) for digit in line.split(sep=',')] for line in file]
-        color_dict[filename[:-4]] = colors[color_itt]
-        tad_dict[filename[:-4]] = tad_data
-        tad_data = np.asarray(tad_data)
-        tad_dict_binned[filename[:-4]] = tad_data / resolution
-        color_itt += 1
+            spamreader = csv.reader(file)
+            sniffer = csv.Sniffer()
+            dialect = sniffer.sniff(file.read(1024))
+            file.seek(0)
+            tad_data = [[digit for digit in line.strip().split(sep=dialect.delimiter)] for line in file]
+            if len(tad_data[0]) == 2:
+                tad_data = np.asarray(tad_data, dtype='float')
+            elif len(tad_data[0]) == 3:
+                temp_data = []
+                for i in range(len(tad_data)):
+                    if tad_data[i][0] == str(chromosome) or tad_data[i][0] == 'chr' + str(chromosome):
+                        temp_data.append(tad_data[i][1:])
+                tad_data = np.asarray(temp_data, dtype='float')
+        if tad_data.size != 0:
+            color_dict[filename[:-4]] = colors[color_itt]
+            tad_dict[filename[:-4]] = tad_data
+            tad_data = np.asarray(tad_data)
+            tad_dict_binned[filename[:-4]] = tad_data / resolution
+            color_itt += 1
     return [tad_dict, tad_dict_binned, color_dict]
 
 
@@ -1270,7 +1293,7 @@ def set_display_stacked_boundary_map(tad_dict_binned, stacked_boundary_option):
             title = str(i) + " methods"
             stacked_boundary_plot.add_bar(name=title, x=names, y=stack[:, i])
         stacked_boundary_plot.update_layout(barmode='stack', template='simple_white')
-        stacked_boundary_plot.update_layout(legend_title_text='Boundaries found in:')
+        stacked_boundary_plot.update_layout(legend_title_text='Boundaries found in:' , xaxis_title='Callers', yaxis_title='Percent of Shared Boundaries')
     else:
         stacked_boundary_plot = px.bar()
     return stacked_boundary_plot
@@ -1326,7 +1349,7 @@ def set_display_stacked_Domain_map(tad_dict_binned, stacked_domain_option):
             title = str(i) + " methods"
             stacked_domain_plot.add_bar(name=title, x=names, y=stack[:, i])
         stacked_domain_plot.update_layout(barmode='stack', template='simple_white')
-        stacked_domain_plot.update_layout(legend_title_text='Domains found in:')
+        stacked_domain_plot.update_layout(legend_title_text='Domains found in:', xaxis_title='Callers', yaxis_title='Percent of Shared Domains')
     else:
         stacked_domain_plot = px.bar()
     return stacked_domain_plot
@@ -1352,6 +1375,7 @@ def set_MoC_Comparison(MoC, tad_dict_binned, MoC_option):
         MoC_Comparison_plot.add_bar(x=names, y=MoC[row_select])
         MoC_Comparison_plot.update_layout(template='simple_white')
         MoC_Comparison_plot.update_yaxes(title_text="Measure of Concordance")
+        MoC_Comparison_plot.update_xaxes(title_text="Callers")
     else:
         MoC_Comparison_plot = px.bar()
     return MoC_Comparison_plot
@@ -1371,6 +1395,7 @@ def set_MoC(MoC, tad_dict_binned):
         MoC_plot.add_bar(x=names, y=average)
         MoC_plot.update_layout(template='simple_white')
         MoC_plot.update_yaxes(title_text="Average Measure of Concordance")
+        MoC_plot.update_xaxes(title_text="Callers")
     else:
         MoC_plot = px.bar()
     return MoC_plot
@@ -1426,6 +1451,7 @@ def set_PCA(MoC, tad_dict_binned, markersize, norm_path):
         )
         PCA_plot.update_traces(marker=dict(size=markersize))
         PCA_plot.update_layout(template='simple_white')
+        PCA_plot.update_layout(xaxis_title='Principal Component 1', yaxis_title='Principal Component 2')
     else:
         PCA_plot = px.bar()
     return PCA_plot
@@ -1474,3 +1500,14 @@ def update_output(id):
 def update_output(id):
     ref = "/TADMaster/heatmap/" + str(id)
     return [ref]
+
+@app.callback(
+    [Output("heatmap button", 'disabled')],
+    [Input("target_id", "value")],
+)
+def disable_heat_map_button(id):
+    data = Data.objects.get(pk=id)
+    if str(data.document):
+        return [False]
+    else:
+        return [True]

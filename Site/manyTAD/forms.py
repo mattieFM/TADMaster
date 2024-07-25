@@ -31,7 +31,14 @@ class ExistingForm(forms.ModelForm):
 	class Meta:
 		model = Data
 		fields = ( 'title',  'description', 'chromosome', 'email', 'resolution', 'document')
-		labels = {'resolution': 'Resolution (basepairs)', 'document': 'Contact Matrix'}
+		labels = {'resolution': 'Resolution (basepairs)', 'document': 'Contact Matrix*'}
+
+class ExistingFormNoMatrix(forms.ModelForm):
+	class Meta:
+		model = Data
+		fields = ( 'title',  'description', 'chromosome', 'email', 'resolution')
+		labels = {'resolution': 'Resolution (basepairs)'}
+
 
 class UploadBedForm(forms.Form):
     bed_title_1 = forms.CharField(max_length=50)

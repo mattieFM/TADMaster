@@ -1,4 +1,4 @@
-{% extends 'manyTAD/base.html' %}
+{% extends 'manyTAD/base_plus.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
 <body>
@@ -8,11 +8,11 @@
 	<div class="container" style="margin-top: 100px; min-height: 100%">
 		<form method="post" enctype="multipart/form-data">
 
-	<h2 class="mb-5 header_text popins" style="text-align: center;">
+	<h3 class="" style="text-align: left;">
             <b style="color: #708090;"> SELECT HI-C DATA FORMAT </b>
-        </h2>
+        </h3>
 
-       <a  href = "https://github.com/OluwadareLab/TADMaster/wiki/TADMaster-Plus" target="_blank">Tryout by following tutorial instruction at this link using provided sample data</a>
+       <a id="tryoutBtn"  href = "https://github.com/OluwadareLab/TADMaster/wiki/TADMaster-Plus" target="_blank">Tryout by following tutorial instruction at this link using provided sample data</a>
 
 
         <div class="col-md-12" style="margin-bottom: 25px">
@@ -112,7 +112,7 @@
         	</div>
         </div>
         <div style="float: right;">
-        	<button type="submit" class="btn btn-secondary btn-lg" style="float: right;">
+        	<button id="submitBtn" type="submit" class="btn btn-secondary btn-lg" style="float: right;">
         		<h4 style="color: #fff;" class="popins_reg">NEXT&nbsp;&nbsp;<i class="fas fa-hand-point-right"></i></h4>
         	</button>
         </div>
@@ -126,7 +126,7 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="../static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
+<script src="/static/bootstrapv4/js/bootstrap.bundle.min.js"></script>
 
 <script>
 var error = '{{ error }}';
